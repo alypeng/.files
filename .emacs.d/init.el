@@ -128,7 +128,7 @@
   (company-dabbrev-downcase nil)
   (company-dabbrev-ignore-case t)
   (company-idle-delay 0.1)
-  (company-minimum-prefix-length 1)
+  (company-minimum-prefix-length 2)
   (company-show-numbers t)
   (company-tooltip-align-annotations t)
   :bind (:map company-mode-map
@@ -196,11 +196,10 @@
   company-phpactor
   :ensure t
   :hook (php-mode . (lambda ()
+                      (set (make-local-variable 'company-idle-delay) 0.4)
                       (set (make-local-variable 'company-backends)
-                           '((company-dabbrev  ;
-                              company-files    ;
-                              company-keywords ;
-                              )
+                           '((company-keywords ;
+                              company-phpactor)
                              (company-phpactor))))))
 
 (use-package
