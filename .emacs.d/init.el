@@ -111,7 +111,7 @@
   ("M-x" . counsel-M-x)
   ("C-x b" . counsel-switch-buffer)
   ("C-x C-f" . counsel-find-file)
-  ("C-c C-r" . ivy-resume)
+  ("C-c C-v" . ivy-resume)
   ("<f1> f" . counsel-describe-function)
   ("<f1> v" . counsel-describe-variable)
   ("<f2> u" . counsel-unicode-char)
@@ -133,7 +133,7 @@
   (company-tooltip-align-annotations t)
   :bind (:map company-mode-map
               ("<tab>"   . company-indent-or-complete-common)
-              ("C-<tab>" . company-other-backend)))
+              ("S-<tab>" . company-other-backend)))
 
 (use-package
   flycheck
