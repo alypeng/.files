@@ -224,6 +224,34 @@
   geben
   :ensure t)
 
+;; python
+
+(use-package
+  anaconda-mode
+  :ensure t
+  :hook ;;
+  (python-mode . anaconda-mode)
+  (python-mode . anaconda-eldoc-mode))
+
+(use-package
+  company-anaconda
+  :ensure t
+  :hook (python-mode . (lambda ()
+                         (set (make-local-variable 'company-backends)
+                              '(company-anaconda)))))
+
+(use-package
+  blacken
+  :ensure t
+  :diminish
+  :hook (python-mode . blacken-mode))
+
+(use-package
+  pipenv
+  :ensure t
+  :diminish
+  :hook (python-mode . pipenv-mode))
+
 ;; experimental
 
 (provide 'init)
