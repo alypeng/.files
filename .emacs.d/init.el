@@ -132,8 +132,8 @@
   (company-show-numbers t)
   (company-tooltip-align-annotations t)
   :bind (:map company-mode-map
-              ("<tab>"   . company-indent-or-complete-common)
-              ("S-<tab>" . company-other-backend)))
+              ("<tab>" . company-indent-or-complete-common)
+              ("<backtab>" . company-other-backend)))
 
 (use-package
   flycheck
@@ -198,8 +198,8 @@
   :hook (php-mode . (lambda ()
                       (set (make-local-variable 'company-idle-delay) 0.4)
                       (set (make-local-variable 'company-backends)
-                           '((company-keywords ;
-                              company-phpactor)
+                           '((company-phpactor ;
+                              company-keywords)
                              (company-phpactor))))))
 
 (use-package
