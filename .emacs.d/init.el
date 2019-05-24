@@ -142,7 +142,7 @@
   (add-to-list 'display-buffer-alist '("flycheck errors"            ;
                                        (display-buffer-reuse-window ;
                                         display-buffer-in-side-window)
-                                       (window-height . 0.2)))
+                                       (window-height . 0.1)))
   :custom ;;
   (flycheck-display-errors-function nil)
   (flycheck-indication-mode nil))
@@ -205,8 +205,9 @@
 (use-package
   flycheck-phpstan
   :ensure t
-  :config (flycheck-add-next-checker 'phpstan '(warning . php-phpcs))
-  :custom (phpstan-level 4))
+  :custom (phpstan-level 4)
+  :hook (php-mode . (lambda ()
+                      (flycheck-select-checker 'phpstan))))
 
 (use-package
   phpcbf
@@ -231,7 +232,9 @@
   :ensure t
   :hook ;;
   (python-mode . anaconda-mode)
-  (python-mode . anaconda-eldoc-mode))
+  (python-mode . anaconda-eldoc-mode)
+  (python-mode . (lambda ()
+                   (flycheck-select-checker 'python-mypy))))
 
 (use-package
   company-anaconda
