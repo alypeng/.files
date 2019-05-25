@@ -101,6 +101,14 @@
   :config (which-key-mode 1))
 
 (use-package
+  ace-window
+  :ensure t
+  :diminish
+  :custom ;;
+  (aw-dispatch-always t)
+  :bind ("M-o" . ace-window))
+
+(use-package
   counsel
   :ensure t
   :demand t
