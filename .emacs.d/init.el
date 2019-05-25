@@ -176,6 +176,19 @@
                              (add-hook 'before-save-hook ;
                                        'elisp-format-buffer nil t))))
 
+;; json
+
+(use-package
+  json-mode
+  :ensure t
+  :custom (js-indent-level 2))
+
+(use-package
+  prettier-js
+  :ensure t
+  :diminish
+  :hook (json-mode . prettier-js-mode))
+
 ;; php
 
 (use-package
