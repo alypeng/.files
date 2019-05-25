@@ -27,8 +27,10 @@
 (line-number-mode 1)
 (column-number-mode 1)
 
-(delete-selection-mode 1)
+(electric-pair-mode 1)
 (show-paren-mode 1)
+
+(delete-selection-mode 1)
 
 (set-face-attribute 'default nil
                     :family "Hack"
