@@ -111,7 +111,7 @@
   ("M-x" . counsel-M-x)
   ("C-x b" . counsel-switch-buffer)
   ("C-x C-f" . counsel-find-file)
-  ("C-c C-v" . ivy-resume)
+  ("C-c C-i" . ivy-resume)
   ("<f1> f" . counsel-describe-function)
   ("<f1> v" . counsel-describe-variable)
   ("<f2> u" . counsel-unicode-char)
