@@ -158,6 +158,14 @@
   (flycheck-indication-mode nil))
 
 (use-package
+  prettier-js
+  :ensure t
+  :diminish
+  :hook ;;
+  (json-mode . prettier-js-mode)
+  (yaml-mode . prettier-js-mode))
+
+(use-package
   magit
   :ensure t
   :custom ;;
@@ -182,12 +190,6 @@
   json-mode
   :ensure t
   :custom (js-indent-level 2))
-
-(use-package
-  prettier-js
-  :ensure t
-  :diminish
-  :hook (json-mode . prettier-js-mode))
 
 ;; php
 
@@ -277,6 +279,12 @@
   :ensure t
   :diminish
   :hook (python-mode . pipenv-mode))
+
+;; yaml
+
+(use-package
+  yaml-mode
+  :ensure t)
 
 ;; experimental
 
