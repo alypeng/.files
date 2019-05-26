@@ -1,0 +1,6 @@
+auto-save-list/
+backup/
+elpa/
+null.el
+session.*
+transient/
