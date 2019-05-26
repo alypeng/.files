@@ -62,6 +62,12 @@
   :config (windmove-default-keybindings))
 
 (use-package
+  replace
+  :bind ;;
+  ("C-r" . query-replace-regexp)
+  ("C-M-r" . query-replace))
+
+(use-package
   misc
   :bind ("M-z" . zap-up-to-char))
 
@@ -121,7 +127,7 @@
   ("M-x" . counsel-M-x)
   ("C-x b" . counsel-switch-buffer)
   ("C-x C-f" . counsel-find-file)
-  ("C-c C-i" . ivy-resume)
+  ("C-c C-y" . ivy-resume)
   ("<f1> f" . counsel-describe-function)
   ("<f1> v" . counsel-describe-variable)
   ("<f2> u" . counsel-unicode-char)
