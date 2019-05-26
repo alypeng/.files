@@ -195,7 +195,9 @@
   :ensure t
   :diminish
   :config (projectile-mode 1)
-  :custom (projectile-completion-system 'ivy)
+  :custom ;;
+  (projectile-completion-system 'ivy)
+  (projectile-dynamic-mode-line nil)
   :bind-keymap ("C-c p" . projectile-command-map))
 
 ;; emacs-lisp
@@ -223,6 +225,8 @@
   (flycheck-phpcs-standard "PSR2")
   (php-mode-coding-style 'psr2)
   (php-mode-template-compatibility nil)
+  (projectile-register-project-type 'php '("composer.json")
+                                    :test-suffix "Test")
   :hook (php-mode . (lambda ()
                       (when              ;
                           (not           ;
