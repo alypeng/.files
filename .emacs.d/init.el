@@ -190,6 +190,14 @@
                         (company-mode 0)))
   :bind ("C-x g" . magit-status))
 
+(use-package
+  projectile
+  :ensure t
+  :diminish
+  :config (projectile-mode 1)
+  :custom (projectile-completion-system 'ivy)
+  :bind-keymap ("C-c p" . projectile-command-map))
+
 ;; emacs-lisp
 
 (use-package
