@@ -117,6 +117,15 @@
   :bind ("M-o" . ace-window))
 
 (use-package
+  avy
+  :ensure t
+  :bind ;;
+  ("C-M-s" . avy-goto-char)
+  ("M-g a" . avy-goto-line)
+  ("M-g e" . avy-goto-end-of-line)
+  ("M-g r" . avy-resume))
+
+(use-package
   counsel
   :ensure t
   :demand t
