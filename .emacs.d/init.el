@@ -209,6 +209,14 @@
                              (add-hook 'before-save-hook ;
                                        'elisp-format-buffer nil t))))
 
+;; fish
+
+(use-package
+  fish-mode
+  :ensure t
+  :hook (fish-mode . (lambda ()
+                       (add-hook 'before-save-hook 'fish_indent nil t))))
+
 ;; json
 
 (use-package
