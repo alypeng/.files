@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+git clone git@github.com:alypeng/.files.git $HOME/.files
+
+if [ "$(uname)" == "Darwin" ]; then
+    source $HOME/.files/bootstrap-macos.sh
+else
+    source $HOME/.files/bootstrap-linux.sh
+fi
+
+brew analytics off
+
+brew update
+brew install fish
+
+which fish | sudo tee -a /etc/shells
+chsh -s "$(which fish)"
+
+ln -s $HOME/.files/.config/fish $HOME/.config
