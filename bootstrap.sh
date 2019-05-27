@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [ "$(uname)" == "Linux" ]; then
+    sudo apt update
+    sudo apt install git
+fi
+
 git clone git@github.com:alypeng/.files.git $HOME/.files
 
 if [ "$(uname)" == "Darwin" ]; then
