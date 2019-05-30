@@ -256,11 +256,11 @@
   company-phpactor
   :ensure t
   :hook (php-mode . (lambda ()
-                      (set (make-local-variable 'company-idle-delay) 0.4)
-                      (set (make-local-variable 'company-backends)
-                           '((company-phpactor ;
-                              company-keywords)
-                             (company-phpactor))))))
+                      (setq-local company-idle-delay 0.4)
+                      (setq-local company-backends    ;
+                                  '((company-phpactor ;
+                                     company-keywords)
+                                    (company-phpactor))))))
 
 (use-package
   flycheck-phpstan
@@ -300,8 +300,8 @@
   company-anaconda
   :ensure t
   :hook (python-mode . (lambda ()
-                         (set (make-local-variable 'company-backends)
-                              '(company-anaconda)))))
+                         (setq-local company-backends ;
+                                     '(company-anaconda)))))
 
 (use-package
   blacken
