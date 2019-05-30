@@ -267,6 +267,8 @@
   :ensure t
   :custom (phpstan-level 4)
   :hook (php-mode . (lambda ()
+                      (when (not (php-project-get-root-dir))
+                        (setq-local php-project-root default-directory))
                       (flycheck-select-checker 'phpstan))))
 
 (use-package
