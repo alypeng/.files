@@ -296,7 +296,9 @@
   (python-mode . anaconda-mode)
   (python-mode . anaconda-eldoc-mode)
   (python-mode . (lambda ()
-                   (flycheck-select-checker 'python-mypy))))
+                   (add-hook 'after-save-hook (lambda ()
+                                                (flycheck-select-checker ;
+                                                 'python-mypy))))))
 
 (use-package
   company-anaconda
