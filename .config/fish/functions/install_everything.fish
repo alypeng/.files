@@ -36,6 +36,7 @@ function install_everything
 
     dotconfig git
 
+    dotfile .aspell.conf
     dotfile .emacs.d
     dotfile phpstan.neon
 
