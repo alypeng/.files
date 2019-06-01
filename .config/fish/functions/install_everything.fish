@@ -37,6 +37,7 @@ function install_everything
     dotconfig git
 
     dotfile .emacs.d
+    dotfile phpstan.neon
 
     fish_update_completions
 end
