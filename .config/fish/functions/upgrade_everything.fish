@@ -12,4 +12,6 @@ function upgrade_everything
 
     brew upgrade
     brew cleanup -s
+
+    fish_update_completions
 end
