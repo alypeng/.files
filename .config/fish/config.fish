@@ -16,3 +16,5 @@ switch (uname)
 
         set -x PATH /home/linuxbrew/.linuxbrew/opt/python/libexec/bin $PATH
 end
+
+solarized_light
