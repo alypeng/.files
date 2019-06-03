@@ -298,7 +298,8 @@
   (python-mode . (lambda ()
                    (add-hook 'after-save-hook (lambda ()
                                                 (flycheck-select-checker ;
-                                                 'python-mypy))))))
+                                                 'python-mypy))          ;
+                             nil t))))
 
 (use-package
   company-anaconda
