@@ -1,6 +1,9 @@
 auto-save-list/
 backup/
 elpa/
+lsp-cache/
 null.el
+phpstan.el/
+projectile-bookmarks.eld
 session.*
 transient/
