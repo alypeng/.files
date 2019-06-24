@@ -168,9 +168,7 @@
                                        (display-buffer-reuse-window ;
                                         display-buffer-in-side-window)
                                        (window-height . 0.1)))
-  :custom ;;
-  (flycheck-display-errors-function nil)
-  (flycheck-indication-mode nil))
+  :custom (flycheck-display-errors-function nil))
 
 (use-package
   prettier-js
