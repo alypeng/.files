@@ -21,4 +21,5 @@ brew install fish
 which fish | sudo tee -a /etc/shells
 chsh -s "$(which fish)"
 
+mkdir -p $HOME/.config
 ln -s $HOME/.files/.config/fish $HOME/.config
