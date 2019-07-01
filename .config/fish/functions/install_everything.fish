@@ -17,6 +17,7 @@ function install_everything
 
     brew install git
     brew install prettier
+    brew install ripgrep
     brew install shfmt
 
     brew install php
