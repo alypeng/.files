@@ -200,6 +200,10 @@
   (projectile-dynamic-mode-line nil)
   :bind-keymap ("C-c p" . projectile-command-map))
 
+(use-package
+  projectile-ripgrep
+  :ensure t)
+
 ;; emacs-lisp
 
 (use-package
