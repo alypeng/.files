@@ -1,3 +1,4 @@
+.lsp-session-*
 auto-save-list/
 backup/
 elpa/
