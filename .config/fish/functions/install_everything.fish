@@ -35,6 +35,8 @@ function install_everything
     brew install mypy
     brew install pipenv
 
+    npm install --global intelephense
+
     dotconfig git
 
     dotfile .aspell.conf
