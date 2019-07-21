@@ -255,16 +255,6 @@
               ("C-c h" . phpactor-hover)))
 
 (use-package
-  company-phpactor
-  :ensure t
-  :hook (php-mode . (lambda ()
-                      (setq-local company-idle-delay 0.4)
-                      (setq-local company-backends    ;
-                                  '((company-phpactor ;
-                                     company-keywords)
-                                    (company-phpactor))))))
-
-(use-package
   flycheck-phpstan
   :ensure t
   :custom (phpstan-level 4)
