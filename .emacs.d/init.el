@@ -171,14 +171,6 @@
   :custom (flycheck-display-errors-function nil))
 
 (use-package
-  prettier-js
-  :ensure t
-  :diminish
-  :hook ;;
-  (json-mode . prettier-js-mode)
-  (yaml-mode . prettier-js-mode))
-
-(use-package
   magit
   :ensure t
   :custom ;;
@@ -203,6 +195,33 @@
 (use-package
   projectile-ripgrep
   :ensure t)
+
+;; multiple
+
+(use-package
+  lsp-mode
+  :ensure t
+  :custom ;;
+  (lsp-enable-snippet nil)
+  (lsp-prefer-flymake :none)
+  :hook (php-mode . lsp)
+  :bind (:map lsp-mode-map
+              ("C-c d" . lsp-find-definition)
+              ("C-c h" . lsp-describe-thing-at-point)))
+
+(use-package
+  company-lsp
+  :ensure t
+  :hook (php-mode . (lambda ()
+                      (setq-local company-backends '(company-lsp)))))
+
+(use-package
+  prettier-js
+  :ensure t
+  :diminish
+  :hook ;;
+  (json-mode . prettier-js-mode)
+  (yaml-mode . prettier-js-mode))
 
 ;; emacs-lisp
 
