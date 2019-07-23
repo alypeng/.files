@@ -167,7 +167,7 @@
   (add-to-list 'display-buffer-alist '("flycheck errors"            ;
                                        (display-buffer-reuse-window ;
                                         display-buffer-in-side-window)
-                                       (window-height . 0.1)))
+                                       (window-height . 0.2)))
   :custom (flycheck-display-errors-function nil))
 
 (use-package
@@ -276,6 +276,7 @@
 (use-package
   flycheck-phpstan
   :ensure t
+  :config (flycheck-add-next-checker 'phpstan 'php-phpcs)
   :custom (phpstan-level 4)
   :hook (php-mode . (lambda ()
                       (when (not (php-project-get-root-dir))
