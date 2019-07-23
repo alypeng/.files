@@ -47,6 +47,7 @@
 
 (setq-default fill-column 80)
 (setq-default indent-tabs-mode nil)
+(setq-default line-spacing 3)
 (setq-default tab-width 4)
 
 (setq auto-save-file-name-transforms '((".*"  "~/.emacs.d/auto-save/" t)))
