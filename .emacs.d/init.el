@@ -128,6 +128,9 @@
   :demand t
   :diminish ivy-mode
   :config (ivy-mode 1)
+  (advice-add 'ivy--minibuffer-setup
+              :after (lambda ()
+                       (setq-local line-spacing 3)))
   :bind ;;
   ("C-s" . swiper)
   ("M-x" . counsel-M-x)
