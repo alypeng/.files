@@ -259,10 +259,10 @@
   (php-mode-coding-style 'psr2)
   (php-mode-template-compatibility nil)
   :hook (php-mode . (lambda ()
-                      (when              ;
-                          (not           ;
-                           (string-match ;
-                            geben-temporary-file-directory buffer-file-name))
+                      (when (or (not (boundp 'geben-temporary-file-directory))
+                                (not (string-match                   ;
+                                      geben-temporary-file-directory ;
+                                      buffer-file-name)))
                         (add-hook 'before-save-hook (lambda ()
                                                       (php-cs-fixer-fix)
                                                       (phpcbf)) ;
