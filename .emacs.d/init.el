@@ -59,10 +59,6 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (use-package
-  windmove
-  :config (windmove-default-keybindings))
-
-(use-package
   replace
   :bind ;;
   ("C-r" . query-replace-regexp)
