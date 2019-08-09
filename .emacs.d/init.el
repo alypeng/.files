@@ -204,12 +204,13 @@
   :hook (php-mode . lsp)
   :bind (:map lsp-mode-map
               ("C-c d" . lsp-find-definition)
+              ("C-c f" . lsp-find-references)
               ("C-c h" . lsp-describe-thing-at-point)))
 
 (use-package
   company-lsp
   :ensure t
-  :hook (php-mode . (lambda ()
+  :hook (lsp-mode . (lambda ()
                       (setq-local company-backends '(company-lsp)))))
 
 (use-package
