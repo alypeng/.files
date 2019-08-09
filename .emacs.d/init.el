@@ -243,6 +243,7 @@
 (use-package
   json-mode
   :ensure t
+  :defer
   :custom (js-indent-level 2))
 
 ;; php
@@ -267,9 +268,7 @@
 (use-package
   phpactor
   :ensure t
-  :bind (:map php-mode-map
-              ("C-c d" . phpactor-goto-definition)
-              ("C-c h" . phpactor-hover)))
+  :defer)
 
 (use-package
   flycheck-phpstan
@@ -284,18 +283,21 @@
 (use-package
   phpcbf
   :ensure t
+  :defer
   :custom (phpcbf-standard "PSR2"))
 
 (use-package
   php-cs-fixer
   :ensure t
+  :defer
   :custom ;;
   (php-cs-fixer-rules-fixer-part-options '("array_indentation"))
   (php-cs-fixer-rules-level-part-options '("@PSR2")))
 
 (use-package
   geben
-  :ensure t)
+  :ensure t
+  :defer)
 
 ;; python
 
@@ -334,7 +336,8 @@
 
 (use-package
   yaml-mode
-  :ensure t)
+  :ensure t
+  :defer)
 
 ;; experimental
 
