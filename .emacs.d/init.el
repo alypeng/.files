@@ -27,10 +27,8 @@
 (line-number-mode 1)
 (column-number-mode 1)
 
-(electric-pair-mode 1)
-(show-paren-mode 1)
-
 (delete-selection-mode 1)
+(electric-pair-mode 1)
 
 (set-face-attribute 'default nil
                     :family "Hack"
@@ -81,6 +79,13 @@
   (flyspell-issue-welcome-flag nil)
   (ispell-extra-args '("--run-together"))
   :hook ((text-mode prog-mode) . flyspell-mode))
+
+(use-package
+  paren
+  :config (show-paren-mode 1)
+  :custom ;;
+  (show-paren-when-point-in-periphery t)
+  (show-paren-when-point-inside-paren t))
 
 (use-package
   eldoc
