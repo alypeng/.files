@@ -299,8 +299,8 @@
   :ensure t
   :defer
   :custom ;;
-  (php-cs-fixer-rules-fixer-part-options '("array_indentation"))
-  (php-cs-fixer-rules-level-part-options '("@PSR2")))
+  (php-cs-fixer-rules-fixer-part-options '())
+  (php-cs-fixer-rules-level-part-options '("@PhpCsFixer")))
 
 (use-package
   geben
