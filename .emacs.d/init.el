@@ -209,6 +209,7 @@
   :custom ;;
   (lsp-enable-snippet nil)
   (lsp-prefer-flymake :none)
+  (lsp-response-timeout 30)
   :hook (php-mode . lsp)
   :bind (:map lsp-mode-map
               ("C-c d" . lsp-find-definition)
