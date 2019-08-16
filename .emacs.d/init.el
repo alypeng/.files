@@ -75,6 +75,10 @@
   :hook ((text-mode prog-mode) . flyspell-mode))
 
 (use-package
+  hl-line
+  :hook ((text-mode prog-mode) . hl-line-mode))
+
+(use-package
   paren
   :config (show-paren-mode 1)
   :custom ;;
