@@ -41,6 +41,7 @@
 (setq initial-scratch-message nil)
 (setq require-final-newline t)
 (setq save-interprogram-paste-before-kill t)
+(setq split-height-threshold nil)
 (setq uniquify-buffer-name-style 'post-forward)
 
 (setq-default fill-column 80)
