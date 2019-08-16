@@ -57,12 +57,6 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (use-package
-  replace
-  :bind ;;
-  ("C-r" . query-replace-regexp)
-  ("C-M-r" . query-replace))
-
-(use-package
   misc
   :bind ("M-z" . zap-up-to-char))
 
@@ -121,11 +115,7 @@
 (use-package
   avy
   :ensure t
-  :bind ;;
-  ("C-M-s" . avy-goto-char)
-  ("M-g a" . avy-goto-line)
-  ("M-g e" . avy-goto-end-of-line)
-  ("M-g r" . avy-resume))
+  :bind ("C-z" . avy-goto-char-timer))
 
 (use-package
   counsel
@@ -138,10 +128,10 @@
                        (setq-local line-spacing 3)))
   :bind ;;
   ("C-s" . swiper)
+  ("C-r" . ivy-resume)
   ("M-x" . counsel-M-x)
   ("C-x b" . counsel-switch-buffer)
   ("C-x C-f" . counsel-find-file)
-  ("C-c C-y" . ivy-resume)
   ("<f1> f" . counsel-describe-function)
   ("<f1> v" . counsel-describe-variable)
   ("<f2> u" . counsel-unicode-char)
@@ -162,8 +152,7 @@
   (company-show-numbers t)
   (company-tooltip-align-annotations t)
   :bind (:map company-mode-map
-              ("<tab>" . company-indent-or-complete-common)
-              ("<backtab>" . company-other-backend)))
+              ("<tab>" . company-indent-or-complete-common)))
 
 (use-package
   flycheck
