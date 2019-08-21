@@ -87,6 +87,10 @@
   (show-paren-when-point-inside-paren t))
 
 (use-package
+  display-line-numbers
+  :bind ("C-c l" . display-line-numbers-mode))
+
+(use-package
   eldoc
   :diminish nil)
 
