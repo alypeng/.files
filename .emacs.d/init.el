@@ -59,7 +59,7 @@
 
 (use-package
   misc
-  :bind ("M-z" . zap-up-to-char))
+  :bind ("C-c z" . zap-up-to-char))
 
 (use-package
   subword
@@ -124,7 +124,9 @@
 (use-package
   avy
   :ensure t
-  :bind ("C-z" . avy-goto-char-timer))
+  :bind ;;
+  ("C-z" . avy-goto-char-timer)
+  ("M-z" . avy-goto-end-of-line))
 
 (use-package
   counsel
