@@ -1,17 +1,24 @@
 #!/usr/bin/env bash
 
-if [ "$(uname)" == "Linux" ]; then
-    sudo apt update
-    sudo apt install git
-fi
-
-git clone git@github.com:alypeng/.files.git $HOME/.files
-
 if [ "$(uname)" == "Darwin" ]; then
-    source $HOME/.files/bootstrap-macos.sh
+    HOMEBREW_INSTALLER="https://raw.githubusercontent.com/homebrew/install/master/install"
 else
-    source $HOME/.files/bootstrap-linux.sh
+    sudo apt update
+    sudo apt upgrade
+    sudo apt autoremove
+
+    sudo apt install build-essential
+    sudo apt install curl
+    sudo apt install file
+    sudo apt install git
+    sudo apt install ruby
+
+    export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+
+    HOMEBREW_INSTALLER="https://raw.githubusercontent.com/linuxbrew/install/master/install"
 fi
+
+ruby -e "$(curl -fLsS $HOMEBREW_INSTALLER)"
 
 brew analytics off
 
@@ -20,6 +27,8 @@ brew install fish
 
 which fish | sudo tee -a /etc/shells
 chsh -s "$(which fish)"
+
+git clone git@github.com:alypeng/.files.git $HOME/.files
 
 mkdir -p $HOME/.config
 ln -s $HOME/.files/.config/fish $HOME/.config
