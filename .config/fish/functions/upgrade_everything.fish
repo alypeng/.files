@@ -13,7 +13,7 @@ function upgrade_everything
     brew upgrade
     brew cleanup -s
 
-    npm upgrade --global intelephense
+    npm upgrade --global
 
     fish_update_completions
 end
