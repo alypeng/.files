@@ -30,7 +30,7 @@ fi
 
 chsh -s "$(which fish)"
 
-git clone git@github.com:alypeng/.files.git $HOME/.files
+git clone https://github.com/alypeng/.files.git $HOME/.files
 
 mkdir -p $HOME/.config
 ln -fs $HOME/.files/.config/fish $HOME/.config
