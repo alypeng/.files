@@ -4,10 +4,8 @@ function upgrade_everything
     if test (uname) = "Darwin"
         brew cask upgrade
     else
-        sudo apt update
-
-        sudo apt upgrade
-        sudo apt autoremove
+        sudo dnf --refresh upgrade
+        sudo dnf --refresh autoremove
     end
 
     brew upgrade

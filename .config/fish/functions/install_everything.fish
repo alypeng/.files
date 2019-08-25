@@ -8,11 +8,13 @@ function install_everything
 
         brew cask install homebrew/cask-fonts/font-hack
     else
-        sudo apt update
+        sudo dnf check-update
 
-        sudo apt install emacs
-        sudo apt install firefox
-        sudo apt install fonts-hack
+        sudo dnf group install base-x
+
+        sudo dnf install emacs
+        sudo dnf install firefox
+        sudo dnf install i3
     end
 
     brew install git

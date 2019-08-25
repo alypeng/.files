@@ -3,15 +3,11 @@
 if [ "$(uname)" == "Darwin" ]; then
     HOMEBREW_INSTALLER="https://raw.githubusercontent.com/homebrew/install/master/install"
 else
-    sudo apt update
-    sudo apt upgrade
-    sudo apt autoremove
+    sudo dnf --refresh upgrade
+    sudo dnf --refresh autoremove
 
-    sudo apt install build-essential
-    sudo apt install curl
-    sudo apt install file
-    sudo apt install git
-    sudo apt install ruby
+    sudo dnf install ruby
+    sudo dnf install tar
 
     export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 
@@ -22,13 +18,19 @@ ruby -e "$(curl -fLsS $HOMEBREW_INSTALLER)"
 
 brew analytics off
 
-brew update
-brew install fish
+if [ "$(uname)" == "Darwin" ]; then
+    brew update
+    brew install fish
 
-which fish | sudo tee -a /etc/shells
+    which fish | sudo tee -a /etc/shells
+else
+    sudo dnf install fish
+    sudo dnf install util-linux-user
+fi
+
 chsh -s "$(which fish)"
 
 git clone git@github.com:alypeng/.files.git $HOME/.files
 
 mkdir -p $HOME/.config
-ln -s $HOME/.files/.config/fish $HOME/.config
+ln -fs $HOME/.files/.config/fish $HOME/.config
