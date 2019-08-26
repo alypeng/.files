@@ -16,6 +16,8 @@ function install_everything
         sudo dnf install firefox
         sudo dnf install i3
 
+        dotconfig i3
+
         dotfile .Xresources
         dotfile .xinitrc
     end
