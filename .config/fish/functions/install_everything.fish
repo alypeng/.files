@@ -15,6 +15,7 @@ function install_everything
         sudo dnf install emacs
         sudo dnf install firefox
         sudo dnf install i3
+        sudo dnf install redshift
 
         dotconfig i3
 
