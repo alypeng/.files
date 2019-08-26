@@ -15,6 +15,9 @@ function install_everything
         sudo dnf install emacs
         sudo dnf install firefox
         sudo dnf install i3
+
+        dotfile .Xresources
+        dotfile .xinitrc
     end
 
     brew install git
