@@ -58,6 +58,8 @@ bindcode $mod+16 workspace $ws7
 bindcode $mod+17 workspace $ws8
 bindcode $mod+18 workspace $ws9
 
+bindcode $mod+23 workspace back_and_forth
+
 bindcode $mod+Shift+10 move container to workspace $ws1
 bindcode $mod+Shift+11 move container to workspace $ws2
 bindcode $mod+Shift+12 move container to workspace $ws3
