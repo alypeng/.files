@@ -60,10 +60,6 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (use-package
-  misc
-  :bind ("C-c z" . zap-up-to-char))
-
-(use-package
   subword
   :diminish nil
   :config (global-subword-mode))
@@ -126,9 +122,7 @@
 (use-package
   avy
   :ensure t
-  :bind ;;
-  ("C-z" . avy-goto-char-timer)
-  ("M-z" . avy-goto-end-of-line))
+  :bind ("C-M-s" . avy-goto-char-timer))
 
 (use-package
   counsel
