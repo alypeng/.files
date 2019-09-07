@@ -23,6 +23,8 @@ function install_everything
         dotconfig gtk-3.0
         dotconfig i3
 
+        ln -fs ~/.files/.local/share/fonts ~/.local/share
+
         dotfile .Xresources
         dotfile .xinitrc
     end
