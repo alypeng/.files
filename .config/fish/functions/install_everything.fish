@@ -12,6 +12,7 @@ function install_everything
 
         sudo dnf group install base-x
 
+        sudo dnf install alsa-plugins-pulseaudio
         sudo dnf install emacs
         sudo dnf install firefox
         sudo dnf install i3
