@@ -61,12 +61,12 @@
 
 (use-package
   subword
-  :diminish nil
+  :diminish
   :config (global-subword-mode))
 
 (use-package
   flyspell
-  :diminish nil
+  :diminish
   :custom ;;
   (flyspell-issue-message-flag nil)
   (flyspell-issue-welcome-flag nil)
@@ -90,7 +90,7 @@
 
 (use-package
   eldoc
-  :diminish nil)
+  :diminish)
 
 (use-package
   vc
