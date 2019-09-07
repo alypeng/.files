@@ -18,6 +18,8 @@ function install_everything
         sudo dnf install i3
         sudo dnf install redshift
 
+        sudo chown -R $USER:$USER ~/.cache
+
         dotconfig gtk-3.0
         dotconfig i3
 
