@@ -92,7 +92,6 @@ bindcode $mod+27 mode "resize"
 
 bar {
         mode hide
-        position top
 }
 
 default_border pixel 1
