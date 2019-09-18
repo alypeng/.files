@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 xrdb -load $HOME/.Xresources
-redshift -O 4000 -P
+redshift -O 3500 -P
 exec i3
