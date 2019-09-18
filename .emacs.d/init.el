@@ -74,17 +74,6 @@
   :hook ((text-mode prog-mode) . flyspell-mode))
 
 (use-package
-  hl-line
-  :hook ((text-mode prog-mode) . hl-line-mode))
-
-(use-package
-  paren
-  :config (show-paren-mode 1)
-  :custom ;;
-  (show-paren-when-point-in-periphery t)
-  (show-paren-when-point-inside-paren t))
-
-(use-package
   display-line-numbers
   :bind ("C-c l" . display-line-numbers-mode))
 
@@ -135,7 +124,6 @@
                        (setq-local line-spacing 3)))
   :bind ;;
   ("C-s" . swiper)
-  ("C-r" . ivy-resume)
   ("M-x" . counsel-M-x)
   ("C-x b" . counsel-switch-buffer)
   ("C-x C-f" . counsel-find-file)
