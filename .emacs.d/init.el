@@ -57,7 +57,11 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(defun my/whitespace-hook ()
+  (add-hook 'before-save-hook 'delete-trailing-whitespace nil t))
+
+(add-hook 'text-mode-hook 'my/whitespace-hook)
+(add-hook 'prog-mode-hook 'my/whitespace-hook)
 
 (use-package
   subword
@@ -201,8 +205,8 @@
 (use-package
   company-lsp
   :ensure t
-  :hook (lsp-mode . (lambda ()
-                      (setq-local company-backends '(company-lsp)))))
+  :after lsp-mode
+  :config (push 'company-lsp company-backends))
 
 (use-package
   prettier-js
@@ -214,20 +218,23 @@
 
 ;; emacs-lisp
 
+(defun my/emacs-lisp-hook ()
+  (add-hook 'before-save-hook 'elisp-format-buffer nil t))
+
 (use-package
   elisp-format
   :ensure t
-  :hook (emacs-lisp-mode . (lambda ()
-                             (add-hook 'before-save-hook ;
-                                       'elisp-format-buffer nil t))))
+  :hook (emacs-lisp-mode . my/emacs-lisp-hook))
 
 ;; fish
+
+(defun my/fish-hook ()
+  (add-hook 'before-save-hook 'fish_indent nil t))
 
 (use-package
   fish-mode
   :ensure t
-  :hook (fish-mode . (lambda ()
-                       (add-hook 'before-save-hook 'fish_indent nil t))))
+  :hook (fish-mode . my/fish-hook))
 
 ;; json
 
@@ -239,6 +246,15 @@
 
 ;; php
 
+(defun my/php-hook ()
+  (when (or (not (boundp 'geben-temporary-file-directory))
+            (not (string-match geben-temporary-file-directory buffer-file-name)))
+    (add-hook 'before-save-hook 'my/php-format nil t)))
+
+(defun my/php-format ()
+  (php-cs-fixer-fix)
+  (phpcbf))
+
 (use-package
   php-mode
   :ensure t
@@ -246,30 +262,24 @@
   (flycheck-phpcs-standard "PSR2")
   (php-mode-coding-style 'psr2)
   (php-mode-template-compatibility nil)
-  :hook (php-mode . (lambda ()
-                      (when (or (not (boundp 'geben-temporary-file-directory))
-                                (not (string-match                   ;
-                                      geben-temporary-file-directory ;
-                                      buffer-file-name)))
-                        (add-hook 'before-save-hook (lambda ()
-                                                      (php-cs-fixer-fix)
-                                                      (phpcbf)) ;
-                                  nil t)))))
+  :hook (php-mode . my/php-hook))
 
 (use-package
   phpactor
   :ensure t
   :defer)
 
+(defun my/phpstan-hook ()
+  (when (not (php-project-get-root-dir))
+    (setq-local php-project-root default-directory))
+  (flycheck-select-checker 'phpstan))
+
 (use-package
   flycheck-phpstan
   :ensure t
   :config (flycheck-add-next-checker 'phpstan 'php-phpcs)
   :custom (phpstan-level 4)
-  :hook (php-mode . (lambda ()
-                      (when (not (php-project-get-root-dir))
-                        (setq-local php-project-root default-directory))
-                      (flycheck-select-checker 'phpstan))))
+  :hook (php-mode . my/phpstan-hook))
 
 (use-package
   phpcbf
@@ -292,24 +302,25 @@
 
 ;; python
 
+(defun my/python-hook ()
+  (add-hook 'after-save-hook 'my/mypy-hook nil t))
+
+(defun my/mypy-hook ()
+  (flycheck-select-checker 'python-mypy))
+
 (use-package
   anaconda-mode
   :ensure t
   :hook ;;
   (python-mode . anaconda-mode)
   (python-mode . anaconda-eldoc-mode)
-  (python-mode . (lambda ()
-                   (add-hook 'after-save-hook (lambda ()
-                                                (flycheck-select-checker ;
-                                                 'python-mypy))          ;
-                             nil t))))
+  (python-mode . my/python-hook))
 
 (use-package
   company-anaconda
   :ensure t
-  :hook (python-mode . (lambda ()
-                         (setq-local company-backends ;
-                                     '(company-anaconda)))))
+  :after anaconda-mode
+  :config (push 'company-anaconda company-backends))
 
 (use-package
   blacken
