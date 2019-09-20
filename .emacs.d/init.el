@@ -174,8 +174,6 @@
   :ensure t
   :diminish
   :config (projectile-mode 1)
-  (projectile-register-project-type 'php '("composer.json")
-                                    :test-suffix "Test")
   :custom ;;
   (projectile-completion-system 'ivy)
   (projectile-dynamic-mode-line nil)
