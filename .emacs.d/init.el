@@ -194,6 +194,7 @@
   :ensure t
   :custom ;;
   (lsp-enable-snippet nil)
+  (lsp-file-watch-threshold nil)
   (lsp-prefer-flymake :none)
   (lsp-response-timeout 30)
   :hook (php-mode . lsp)
