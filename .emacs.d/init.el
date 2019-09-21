@@ -99,6 +99,13 @@
   :ensure t)
 
 (use-package
+  evil
+  :ensure t
+  :diminish undo-tree-mode
+  :init (evil-mode 1)
+  :custom (evil-want-C-u-scroll t))
+
+(use-package
   which-key
   :ensure t
   :diminish
