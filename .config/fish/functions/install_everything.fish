@@ -45,11 +45,12 @@ function install_everything
     brew install python
 
     brew install black
-    brew install flake8
     brew install mypy
     brew install pipenv
 
     npm install --global intelephense
+
+    python -m pip install flake8
 
     dotconfig git
 

@@ -13,5 +13,7 @@ function upgrade_everything
 
     npm upgrade --global
 
+    python -m pip install --upgrade flake8
+
     fish_update_completions
 end
