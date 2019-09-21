@@ -312,9 +312,12 @@
 ;; python
 
 (defun my/python-hook ()
-  (add-hook 'after-save-hook 'my/mypy-hook nil t))
+  (add-hook 'after-save-hook 'my/mypy-hook nil t)
+  (when (file-exists-p buffer-file-name)
+    (my/mypy-hook)))
 
 (defun my/mypy-hook ()
+  (remove-hook 'after-save-hook 'my/mypy-hook t)
   (flycheck-select-checker 'python-mypy))
 
 (use-package
