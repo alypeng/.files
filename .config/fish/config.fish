@@ -17,6 +17,8 @@ switch (uname)
         set -x PATH /home/linuxbrew/.linuxbrew/opt/php@7.2/bin $PATH
 
         set -x PATH /home/linuxbrew/.linuxbrew/opt/python/libexec/bin $PATH
+
+        set -x TERM xterm-256color
 end
 
 solarized_light
