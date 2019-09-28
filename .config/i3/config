@@ -97,8 +97,6 @@ bar {
 default_border pixel 1
 hide_edge_borders both
 
-for_window [class="^Firefox$"] fullscreen
-
 assign [class="^Emacs$"] workspace $ws2
 assign [class="^Firefox$"] workspace $ws3
 assign [class="^URxvt$"] workspace $ws1
