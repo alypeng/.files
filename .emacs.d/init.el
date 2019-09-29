@@ -217,7 +217,7 @@
   :custom ;;
   (lsp-enable-snippet nil)
   (lsp-file-watch-threshold nil)
-  (lsp-prefer-flymake :none)
+  (lsp-prefer-flymake nil)
   (lsp-response-timeout 30)
   :hook (php-mode . lsp)
   :bind (:map lsp-mode-map
@@ -234,6 +234,7 @@
 (use-package
   lsp-ui
   :ensure t
+  :config (flycheck-add-next-checker 'lsp-ui 'phpstan)
   :custom ;;
   (lsp-ui-doc-enable nil)
   (lsp-ui-peek-fontify 'never)
