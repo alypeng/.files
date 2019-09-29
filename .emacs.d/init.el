@@ -107,7 +107,11 @@
   :ensure t
   :diminish undo-tree-mode
   :init (evil-mode 1)
-  :custom (evil-want-C-u-scroll t))
+  :custom ;;
+  (evil-default-state "emacs")
+  (evil-normal-state-modes '(text-mode prog-mode))
+  (evil-want-C-u-scroll t)
+  (evil-want-visual-char-semi-exclusive t))
 
 (use-package
   which-key
