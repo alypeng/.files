@@ -232,6 +232,16 @@
   :config (push 'company-lsp company-backends))
 
 (use-package
+  lsp-ui
+  :ensure t
+  :custom ;;
+  (lsp-ui-doc-enable nil)
+  (lsp-ui-peek-fontify 'never)
+  (lsp-ui-sideline-enable nil)
+  :bind (:map lsp-mode-map
+              ("C-c s" . lsp-ui-find-workspace-symbol)))
+
+(use-package
   prettier-js
   :ensure t
   :diminish
