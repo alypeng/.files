@@ -157,6 +157,8 @@
   (company-minimum-prefix-length 2)
   (company-show-numbers t)
   (company-tooltip-align-annotations t)
+  :hook (special-mode . (lambda ()
+                          (company-mode 0)))
   :bind (:map company-mode-map
               ("<tab>" . company-indent-or-complete-common)))
 
@@ -176,8 +178,6 @@
   :custom ;;
   (magit-diff-refine-hunk 'all)
   (magit-diff-refine-ignore-whitespace nil)
-  :hook (magit-mode . (lambda ()
-                        (company-mode 0)))
   :bind ("C-x g" . magit-status))
 
 (use-package
