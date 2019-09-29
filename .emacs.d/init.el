@@ -163,6 +163,13 @@
               ("<tab>" . company-indent-or-complete-common)))
 
 (use-package
+  yasnippet
+  :ensure t
+  :diminish yas-minor-mode
+  :config (yas-global-mode)
+  :bind ("C-c y" . yas-insert-snippet))
+
+(use-package
   flycheck
   :ensure t
   :config (global-flycheck-mode)
