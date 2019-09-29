@@ -64,6 +64,10 @@
 (add-hook 'prog-mode-hook 'my/whitespace-hook)
 
 (use-package
+  autorevert
+  :config (global-auto-revert-mode))
+
+(use-package
   subword
   :diminish
   :config (global-subword-mode))
