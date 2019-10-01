@@ -50,6 +50,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default line-spacing 3)
 (setq-default tab-width 4)
+(setq-default truncate-lines t)
 
 (setq auto-save-file-name-transforms '((".*"  "~/.emacs.d/auto-save/" t)))
 (setq backup-directory-alist         '(("." . "~/.emacs.d/backup/")))
