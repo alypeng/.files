@@ -176,7 +176,10 @@
   :ensure t
   :diminish yas-minor-mode
   :config (yas-global-mode)
-  :bind ("C-c y" . yas-insert-snippet))
+  :bind ;;
+  ("C-c y" . yas-insert-snippet)
+  (:map yas-minor-mode-map
+        ("<tab>" . nil)))
 
 (use-package
   flycheck
