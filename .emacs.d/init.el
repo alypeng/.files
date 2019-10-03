@@ -282,9 +282,7 @@
 ;; php
 
 (defun my/php-hook ()
-  (when (or (not (boundp 'geben-temporary-file-directory))
-            (not (string-match geben-temporary-file-directory buffer-file-name)))
-    (add-hook 'before-save-hook 'my/php-format nil t)))
+  (add-hook 'before-save-hook 'my/php-format nil t))
 
 (defun my/php-format ()
   (php-cs-fixer-fix)
@@ -330,11 +328,6 @@
   :custom ;;
   (php-cs-fixer-rules-fixer-part-options '())
   (php-cs-fixer-rules-level-part-options '("@PhpCsFixer")))
-
-(use-package
-  geben
-  :ensure t
-  :defer)
 
 ;; python
 
