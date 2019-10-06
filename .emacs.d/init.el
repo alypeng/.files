@@ -316,7 +316,7 @@
   :ensure t
   :demand t
   :config (flycheck-add-next-checker 'phpstan 'php-phpcs)
-  :custom (phpstan-level 4)
+  :custom (phpstan-level nil)
   :hook (php-mode . my/phpstan-hook))
 
 (use-package
