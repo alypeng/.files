@@ -218,6 +218,12 @@
 ;; multiple
 
 (use-package
+  web-mode
+  :ensure t
+  :mode "\\.html?\\'"
+  :bind ("C-c w" . web-mode))
+
+(use-package
   lsp-mode
   :ensure t
   :custom ;;
