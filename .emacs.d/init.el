@@ -39,6 +39,7 @@
 (setq delete-by-moving-to-trash t)
 (setq delete-trailing-lines t)
 (setq enable-recursive-minibuffers t)
+(setq gc-cons-threshold 30000000)
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 (setq require-final-newline t)
@@ -174,6 +175,7 @@
 (use-package
   yasnippet
   :ensure t
+  :demand t
   :diminish yas-minor-mode
   :config (yas-global-mode)
   :bind ;;
@@ -219,7 +221,6 @@
   lsp-mode
   :ensure t
   :custom ;;
-  (lsp-enable-snippet nil)
   (lsp-file-watch-threshold nil)
   (lsp-prefer-flymake nil)
   (lsp-response-timeout 30)
