@@ -385,10 +385,10 @@
 
 ;; experimental
 
+(provide 'init)
+;;; init.el ends here
+
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars noruntime)
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
 ;; End:
-
-(provide 'init)
-;;; init.el ends here
