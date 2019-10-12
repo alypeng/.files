@@ -212,10 +212,6 @@
   :bind-keymap ("C-c p" . projectile-command-map))
 
 (use-package
-  projectile-ripgrep
-  :ensure t)
-
-(use-package
   rg
   :ensure t
   :config (rg-enable-menu)
