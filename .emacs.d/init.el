@@ -215,6 +215,14 @@
   projectile-ripgrep
   :ensure t)
 
+(use-package
+  rg
+  :ensure t
+  :config (rg-enable-menu)
+  :custom ;;
+  (rg-align-position-numbers t)
+  (rg-group-result t))
+
 ;; multiple
 
 (use-package
@@ -251,7 +259,7 @@
   (lsp-ui-peek-fontify 'never)
   (lsp-ui-sideline-enable nil)
   :bind (:map lsp-mode-map
-              ("C-c s" . lsp-ui-find-workspace-symbol)))
+              ("C-c w" . lsp-ui-find-workspace-symbol)))
 
 (use-package
   prettier-js
