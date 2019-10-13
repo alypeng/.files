@@ -225,7 +225,15 @@
   web-mode
   :ensure t
   :mode "\\.html?\\'"
-  :bind ("C-c w" . web-mode))
+  :custom ;;
+  (css-indent-offset 2)
+  (web-mode-code-indent-offset 2)
+  (web-mode-css-indent-offset 2)
+  (web-mode-markup-indent-offset 2)
+  (web-mode-script-padding 2)
+  (web-mode-style-padding 2)
+  :bind ;;
+  ("C-c w" . web-mode))
 
 (use-package
   lsp-mode
@@ -234,7 +242,10 @@
   (lsp-file-watch-threshold nil)
   (lsp-prefer-flymake nil)
   (lsp-response-timeout 30)
-  :hook (php-mode . lsp)
+  :hook ;;
+  (css-mode . lsp)
+  (php-mode . lsp)
+  (web-mode . lsp)
   :bind (:map lsp-mode-map
               ("C-c d" . lsp-find-definition)
               ("C-c f" . lsp-find-references)
@@ -262,7 +273,9 @@
   :ensure t
   :diminish
   :hook ;;
+  (css-mode . prettier-js-mode)
   (json-mode . prettier-js-mode)
+  (web-mode . prettier-js-mode)
   (yaml-mode . prettier-js-mode))
 
 ;; emacs-lisp
