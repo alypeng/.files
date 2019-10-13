@@ -49,6 +49,9 @@ function install_everything
     brew install pipenv
 
     npm install --global intelephense
+    npm install --global vscode-css-languageserver-bin
+    npm install --global vscode-html-languageserver-bin
+    npm install --global vscode-json-languageserver-bin
 
     python -m pip install flake8
 
