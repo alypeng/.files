@@ -113,7 +113,8 @@
   (evil-default-state "emacs")
   (evil-normal-state-modes '(text-mode prog-mode))
   (evil-want-C-u-scroll t)
-  (evil-want-visual-char-semi-exclusive t))
+  (evil-want-visual-char-semi-exclusive t)
+  :bind ("C-=" . universal-argument))
 
 (use-package
   which-key
