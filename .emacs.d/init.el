@@ -266,7 +266,7 @@
   (lsp-ui-peek-fontify 'never)
   (lsp-ui-sideline-enable nil)
   :bind (:map lsp-mode-map
-              ("C-c w" . lsp-ui-find-workspace-symbol)))
+              ("C-c S" . lsp-ui-find-workspace-symbol)))
 
 (use-package
   prettier-js
