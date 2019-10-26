@@ -171,12 +171,12 @@
   :hook (special-mode . (lambda ()
                           (company-mode 0)))
   :bind (:map company-mode-map
-              ("<tab>" . company-indent-or-complete-common)))
+              ("<tab>" . company-indent-or-complete-common)
+              ("<backtab>" . company-other-backend)))
 
 (use-package
   yasnippet
   :ensure t
-  :demand t
   :diminish yas-minor-mode
   :config (yas-global-mode)
   :bind ;;
