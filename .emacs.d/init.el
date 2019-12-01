@@ -64,6 +64,7 @@
 
 (add-hook 'text-mode-hook 'my/whitespace-hook)
 (add-hook 'prog-mode-hook 'my/whitespace-hook)
+(add-hook 'conf-mode-hook 'my/whitespace-hook)
 
 (use-package
   autorevert
@@ -82,7 +83,7 @@
   (flyspell-issue-welcome-flag nil)
   (ispell-extra-args '("--run-together"))
   (ispell-program-name "aspell")
-  :hook ((text-mode prog-mode) . flyspell-mode))
+  :hook ((text-mode prog-mode conf-mode) . flyspell-mode))
 
 (use-package
   display-line-numbers
@@ -112,7 +113,7 @@
   :init (evil-mode 1)
   :custom ;;
   (evil-default-state "emacs")
-  (evil-normal-state-modes '(text-mode prog-mode))
+  (evil-normal-state-modes '(text-mode prog-mode conf-mode))
   (evil-want-C-u-scroll t)
   (evil-want-visual-char-semi-exclusive t)
   :bind ("C-=" . universal-argument))
@@ -295,6 +296,18 @@
   fish-mode
   :ensure t
   :hook (fish-mode . my/fish-hook))
+
+;; git
+
+(use-package
+  gitconfig-mode
+  :ensure t
+  :defer)
+
+(use-package
+  gitignore-mode
+  :ensure t
+  :defer)
 
 ;; json
 
