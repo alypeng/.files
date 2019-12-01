@@ -81,6 +81,7 @@
   (flyspell-issue-message-flag nil)
   (flyspell-issue-welcome-flag nil)
   (ispell-extra-args '("--run-together"))
+  (ispell-program-name "aspell")
   :hook ((text-mode prog-mode) . flyspell-mode))
 
 (use-package
