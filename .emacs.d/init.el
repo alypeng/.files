@@ -37,7 +37,6 @@
                     :height 140)
 
 (setq delete-by-moving-to-trash t)
-(setq delete-trailing-lines t)
 (setq enable-recursive-minibuffers t)
 (setq gc-cons-threshold 30000000)
 (setq inhibit-startup-screen t)
@@ -61,7 +60,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (defun my/whitespace-hook ()
-  (add-hook 'before-save-hook 'delete-trailing-whitespace nil t))
+  (add-hook 'before-save-hook 'whitespace-cleanup nil t))
 
 (add-hook 'text-mode-hook 'my/whitespace-hook)
 (add-hook 'prog-mode-hook 'my/whitespace-hook)
