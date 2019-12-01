@@ -216,10 +216,7 @@
 (use-package
   rg
   :ensure t
-  :config (rg-enable-menu)
-  :custom ;;
-  (rg-align-position-numbers t)
-  (rg-group-result t))
+  :config (rg-enable-menu))
 
 ;; multiple
 
@@ -277,7 +274,6 @@
   :hook ;;
   (css-mode . prettier-js-mode)
   (json-mode . prettier-js-mode)
-  (web-mode . prettier-js-mode)
   (yaml-mode . prettier-js-mode))
 
 ;; emacs-lisp
