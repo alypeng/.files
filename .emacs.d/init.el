@@ -43,6 +43,7 @@
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 (setq require-final-newline t)
+(setq ring-bell-function nil)
 (setq save-interprogram-paste-before-kill t)
 (setq split-height-threshold nil)
 (setq uniquify-buffer-name-style 'post-forward)
