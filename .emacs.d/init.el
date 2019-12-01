@@ -67,6 +67,10 @@
 (add-hook 'conf-mode-hook 'my/whitespace-hook)
 
 (use-package
+  winner
+  :config (winner-mode 1))
+
+(use-package
   autorevert
   :config (global-auto-revert-mode))
 
