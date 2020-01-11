@@ -161,11 +161,8 @@
   company
   :ensure t
   :demand t
-  :diminish
   :config (global-company-mode)
   :custom ;;
-  (company-dabbrev-downcase nil)
-  (company-dabbrev-ignore-case t)
   (company-idle-delay 0.1)
   (company-minimum-prefix-length 2)
   (company-show-numbers t)
