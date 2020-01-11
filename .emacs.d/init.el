@@ -66,6 +66,10 @@
 (add-hook 'prog-mode-hook 'my/whitespace-hook)
 (add-hook 'conf-mode-hook 'my/whitespace-hook)
 
+(bind-key "C-c a" 'align-regexp)
+(bind-key "C-c l" 'global-display-line-numbers-mode)
+(bind-key "C-c t" 'sort-lines)
+
 (use-package
   autorevert
   :config (global-auto-revert-mode))
@@ -84,10 +88,6 @@
   (ispell-extra-args '("--run-together"))
   (ispell-program-name "aspell")
   :hook ((text-mode prog-mode conf-mode) . flyspell-mode))
-
-(use-package
-  display-line-numbers
-  :bind ("C-c l" . display-line-numbers-mode))
 
 (use-package
   eldoc
@@ -135,7 +135,7 @@
 (use-package
   avy
   :ensure t
-  :bind ("C-M-s" . avy-goto-char-timer))
+  :bind ("C-c SPC" . avy-goto-char-timer))
 
 (use-package
   counsel
