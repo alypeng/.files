@@ -17,8 +17,7 @@
   (package-install 'use-package))
 
 (eval-when-compile
-  (require 'use-package)
-  (require 'cl))
+  (require 'use-package))
 
 (add-hook 'window-setup-hook 'toggle-frame-fullscreen)
 
@@ -248,7 +247,6 @@
   (lsp-response-timeout 30)
   :hook ;;
   (css-mode . lsp)
-  (php-mode . lsp)
   (web-mode . lsp)
   :bind (:map lsp-mode-map
               ("C-c d" . lsp-find-definition)
@@ -264,7 +262,6 @@
 (use-package
   lsp-ui
   :ensure t
-  :config (flycheck-add-next-checker 'lsp-ui 'phpstan)
   :custom ;;
   (lsp-ui-doc-enable nil)
   (lsp-ui-peek-fontify 'never)
@@ -320,56 +317,6 @@
   :ensure t
   :defer
   :custom (js-indent-level 2))
-
-;; php
-
-(defun my/php-hook ()
-  (add-hook 'before-save-hook 'my/php-format nil t))
-
-(defun my/php-format ()
-  (php-cs-fixer-fix)
-  (phpcbf))
-
-(use-package
-  php-mode
-  :ensure t
-  :custom ;;
-  (flycheck-phpcs-standard "PSR2")
-  (php-mode-coding-style 'psr2)
-  (php-mode-template-compatibility nil)
-  :hook (php-mode . my/php-hook))
-
-(use-package
-  phpactor
-  :ensure t
-  :defer)
-
-(defun my/phpstan-hook ()
-  (when (not (php-project-get-root-dir))
-    (setq-local php-project-root default-directory))
-  (flycheck-select-checker 'phpstan))
-
-(use-package
-  flycheck-phpstan
-  :ensure t
-  :demand t
-  :config (flycheck-add-next-checker 'phpstan 'php-phpcs)
-  :custom (phpstan-level nil)
-  :hook (php-mode . my/phpstan-hook))
-
-(use-package
-  phpcbf
-  :ensure t
-  :defer
-  :custom (phpcbf-standard "PSR2"))
-
-(use-package
-  php-cs-fixer
-  :ensure t
-  :defer
-  :custom ;;
-  (php-cs-fixer-rules-fixer-part-options '())
-  (php-cs-fixer-rules-level-part-options '("@PhpCsFixer")))
 
 ;; python
 

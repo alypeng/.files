@@ -29,18 +29,11 @@ function install_everything
         dotfile .xinitrc
     end
 
+    brew install aspell
     brew install git
     brew install prettier
     brew install ripgrep
     brew install shfmt
-
-    brew install php
-    brew install php@7.2
-
-    brew install composer
-    brew install php-code-sniffer
-    brew install php-cs-fixer
-    brew install phpstan
 
     brew install python
 
@@ -48,7 +41,6 @@ function install_everything
     brew install mypy
     brew install pipenv
 
-    npm install --global intelephense
     npm install --global vscode-css-languageserver-bin
     npm install --global vscode-html-languageserver-bin
     npm install --global vscode-json-languageserver-bin
@@ -59,7 +51,6 @@ function install_everything
 
     dotfile .aspell.conf
     dotfile .emacs.d
-    dotfile phpstan.neon
 
     fish_update_completions
 end
