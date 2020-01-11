@@ -30,6 +30,7 @@
 
 (delete-selection-mode 1)
 (electric-pair-mode 1)
+(winner-mode 1)
 
 (set-face-attribute 'default nil
                     :family "Hack"
@@ -64,10 +65,6 @@
 (add-hook 'text-mode-hook 'my/whitespace-hook)
 (add-hook 'prog-mode-hook 'my/whitespace-hook)
 (add-hook 'conf-mode-hook 'my/whitespace-hook)
-
-(use-package
-  winner
-  :config (winner-mode 1))
 
 (use-package
   autorevert
@@ -189,14 +186,16 @@
   (:map yas-minor-mode-map
         ("<tab>" . nil)))
 
+(defvar my/flycheck-buffer
+  '("flycheck errors" ;;
+    (display-buffer-reuse-window display-buffer-in-side-window)
+    (window-height . 0.2)))
+
 (use-package
   flycheck
   :ensure t
   :config (global-flycheck-mode)
-  (add-to-list 'display-buffer-alist '("flycheck errors"            ;
-                                       (display-buffer-reuse-window ;
-                                        display-buffer-in-side-window)
-                                       (window-height . 0.2)))
+  (add-to-list 'display-buffer-alist my/flycheck-buffer)
   :custom (flycheck-display-errors-function nil))
 
 (use-package
@@ -222,40 +221,23 @@
   :ensure t
   :config (rg-enable-menu))
 
-;; multiple
-
-(use-package
-  web-mode
-  :ensure t
-  :mode "\\.html?\\'"
-  :custom ;;
-  (css-indent-offset 2)
-  (web-mode-code-indent-offset 2)
-  (web-mode-css-indent-offset 2)
-  (web-mode-markup-indent-offset 2)
-  (web-mode-script-padding 2)
-  (web-mode-style-padding 2)
-  :bind ;;
-  ("C-c w" . web-mode))
-
-(use-package
-  prettier-js
-  :ensure t
-  :diminish
-  :hook ;;
-  (css-mode . prettier-js-mode)
-  (json-mode . prettier-js-mode)
-  (yaml-mode . prettier-js-mode))
-
 ;; emacs-lisp
 
 (defun my/emacs-lisp-hook ()
-  (add-hook 'before-save-hook 'elisp-format-buffer nil t))
+  (add-hook 'before-save-hook 'my/emacs-lisp-format nil t))
+
+(defun my/emacs-lisp-format ()
+  (elisp-format-buffer)
+  (elisp-format-buffer))
+
+(use-package
+  elisp-mode
+  :hook (emacs-lisp-mode . my/emacs-lisp-hook))
 
 (use-package
   elisp-format
   :ensure t
-  :hook (emacs-lisp-mode . my/emacs-lisp-hook))
+  :defer)
 
 ;; fish
 
@@ -284,8 +266,8 @@
 (use-package
   json-mode
   :ensure t
-  :defer
-  :custom (js-indent-level 2))
+  :custom (js-indent-level 2)
+  :hook (json-mode . prettier-js-mode))
 
 ;; python
 
@@ -324,12 +306,38 @@
   :diminish
   :hook (python-mode . pipenv-mode))
 
+;; web
+
+(use-package
+  web-mode
+  :ensure t
+  :mode "\\.html?\\'"
+  :custom ;;
+  (web-mode-code-indent-offset 2)
+  (web-mode-css-indent-offset 2)
+  (web-mode-markup-indent-offset 2)
+  (web-mode-script-padding 2)
+  (web-mode-style-padding 2)
+  :bind ;;
+  ("C-c w" . web-mode))
+
+(use-package
+  css-mode
+  :custom (css-indent-offset 2)
+  :hook (css-mode . prettier-js-mode))
+
+(use-package
+  prettier-js
+  :ensure t
+  :diminish
+  :defer)
+
 ;; yaml
 
 (use-package
   yaml-mode
   :ensure t
-  :defer)
+  :hook (yaml-mode . prettier-js-mode))
 
 ;; experimental
 
