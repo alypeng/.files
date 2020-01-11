@@ -1,8 +1,6 @@
-.lsp-session-*
 auto-save-list/
 backup/
 elpa/
-lsp-cache/
 null.el
 projectile-bookmarks.eld
 session.*

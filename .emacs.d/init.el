@@ -239,37 +239,6 @@
   ("C-c w" . web-mode))
 
 (use-package
-  lsp-mode
-  :ensure t
-  :custom ;;
-  (lsp-file-watch-threshold nil)
-  (lsp-prefer-flymake nil)
-  (lsp-response-timeout 30)
-  :hook ;;
-  (css-mode . lsp)
-  (web-mode . lsp)
-  :bind (:map lsp-mode-map
-              ("C-c d" . lsp-find-definition)
-              ("C-c f" . lsp-find-references)
-              ("C-c h" . lsp-describe-thing-at-point)))
-
-(use-package
-  company-lsp
-  :ensure t
-  :after lsp-mode
-  :config (push 'company-lsp company-backends))
-
-(use-package
-  lsp-ui
-  :ensure t
-  :custom ;;
-  (lsp-ui-doc-enable nil)
-  (lsp-ui-peek-fontify 'never)
-  (lsp-ui-sideline-enable nil)
-  :bind (:map lsp-mode-map
-              ("C-c S" . lsp-ui-find-workspace-symbol)))
-
-(use-package
   prettier-js
   :ensure t
   :diminish
