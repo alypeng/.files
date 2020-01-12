@@ -34,6 +34,7 @@ function install_everything
     brew install prettier
     brew install ripgrep
     brew install shfmt
+    brew install tidy-html5
 
     brew install python
 
@@ -52,6 +53,7 @@ function install_everything
     dotfile .aspell.conf
     dotfile .emacs.d
     dotfile .stylelintrc.json
+    dotfile .tidyrc.txt
 
     fish_update_completions
 end
