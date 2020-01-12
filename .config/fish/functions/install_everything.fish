@@ -32,20 +32,18 @@ function install_everything
     brew install aspell
     brew install git
     brew install prettier
+    brew install python
     brew install ripgrep
     brew install shfmt
     brew install tidy-html5
-
-    brew install python
-
-    brew install black
-    brew install pipenv
 
     npm install --global stylelint
     npm install --global stylelint-config-recommended-scss
     npm install --global stylelint-scss
 
+    python -m pip install black
     python -m pip install flake8
+    python -m pip install pipenv
 
     dotconfig git
 

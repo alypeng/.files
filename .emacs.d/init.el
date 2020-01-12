@@ -278,6 +278,7 @@
 (use-package
   anaconda-mode
   :ensure t
+  :diminish
   :hook ;;
   (python-mode . anaconda-mode)
   (python-mode . anaconda-eldoc-mode))

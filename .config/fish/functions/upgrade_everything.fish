@@ -13,7 +13,9 @@ function upgrade_everything
 
     npm upgrade --global
 
+    python -m pip install --upgrade black
     python -m pip install --upgrade flake8
+    python -m pip install --upgrade pipenv
 
     fish_update_completions
 end
