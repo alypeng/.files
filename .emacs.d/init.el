@@ -306,7 +306,7 @@
 (use-package
   web-mode
   :ensure t
-  :mode "\\.html?\\'"
+  :mode ("\\.html?\\'" "\\.erb\\'")
   :config (flycheck-add-mode 'html-tidy 'web-mode)
   :custom ;;
   (flycheck-tidyrc "~/.tidyrc.txt")

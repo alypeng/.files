@@ -37,8 +37,11 @@ function install_everything
     brew install prettier
     brew install python
     brew install ripgrep
+    brew install ruby
     brew install shfmt
     brew install tidy-html5
+
+    gem install rubocop
 
     npm install --global stylelint
     npm install --global stylelint-config-recommended-scss

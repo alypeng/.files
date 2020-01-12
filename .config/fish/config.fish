@@ -4,6 +4,9 @@ switch (uname)
 
         set -x PATH /usr/local/opt/python/libexec/bin $PATH
 
+        set -x PATH /usr/local/opt/ruby/bin $PATH
+        set -x PATH /usr/local/lib/ruby/gems/2.6.0/bin $PATH
+
     case Linux
         set -x PATH /usr/local/bin /usr/bin /usr/local/sbin /usr/sbin
 

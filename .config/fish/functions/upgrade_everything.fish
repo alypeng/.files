@@ -11,6 +11,9 @@ function upgrade_everything
     brew upgrade
     brew cleanup -s
 
+    gem update
+    gem cleanup
+
     npm upgrade --global
 
     python -m pip install --upgrade black
