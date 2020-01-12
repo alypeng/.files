@@ -66,6 +66,13 @@
 (add-hook 'prog-mode-hook 'my/whitespace-hook)
 (add-hook 'conf-mode-hook 'my/whitespace-hook)
 
+(defun my/indent-hook ()
+  (add-hook 'before-save-hook 'my/indent-buffer nil t))
+
+(defun my/indent-buffer ()
+  (save-excursion (indent-region (point-min)
+                                 (point-max))))
+
 (bind-key "C-c a" 'align-regexp)
 (bind-key "C-c l" 'global-display-line-numbers-mode)
 (bind-key "C-c t" 'sort-lines)
@@ -251,12 +258,12 @@
 (use-package
   gitconfig-mode
   :ensure t
-  :defer)
+  :hook (gitconfig-mode . my/indent-hook))
 
 (use-package
   gitignore-mode
   :ensure t
-  :defer)
+  :hook (gitignore-mode . my/indent-hook))
 
 ;; json
 
@@ -315,6 +322,7 @@
   (web-mode-markup-indent-offset 2)
   (web-mode-script-padding 2)
   (web-mode-style-padding 2)
+  :hook (web-mode . my/indent-hook)
   :bind ;;
   ("C-c w" . web-mode))
 
