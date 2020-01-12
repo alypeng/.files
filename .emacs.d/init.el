@@ -275,22 +275,12 @@
 
 ;; python
 
-(defun my/python-hook ()
-  (add-hook 'after-save-hook 'my/mypy-hook nil t)
-  (when (file-exists-p buffer-file-name)
-    (my/mypy-hook)))
-
-(defun my/mypy-hook ()
-  (remove-hook 'after-save-hook 'my/mypy-hook t)
-  (flycheck-select-checker 'python-mypy))
-
 (use-package
   anaconda-mode
   :ensure t
   :hook ;;
   (python-mode . anaconda-mode)
-  (python-mode . anaconda-eldoc-mode)
-  (python-mode . my/python-hook))
+  (python-mode . anaconda-eldoc-mode))
 
 (use-package
   company-anaconda

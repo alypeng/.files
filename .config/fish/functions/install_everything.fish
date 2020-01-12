@@ -39,7 +39,6 @@ function install_everything
     brew install python
 
     brew install black
-    brew install mypy
     brew install pipenv
 
     npm install --global stylelint
