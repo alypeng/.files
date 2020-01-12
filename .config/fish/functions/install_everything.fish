@@ -41,12 +41,17 @@ function install_everything
     brew install mypy
     brew install pipenv
 
+    npm install --global stylelint
+    npm install --global stylelint-config-recommended-scss
+    npm install --global stylelint-scss
+
     python -m pip install flake8
 
     dotconfig git
 
     dotfile .aspell.conf
     dotfile .emacs.d
+    dotfile .stylelintrc.json
 
     fish_update_completions
 end
