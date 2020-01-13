@@ -203,6 +203,11 @@
   :custom (flycheck-display-errors-function nil))
 
 (use-package
+  flycheck-indicator
+  :ensure t
+  :hook (flycheck-mode . flycheck-indicator-mode))
+
+(use-package
   magit
   :ensure t
   :custom ;;
