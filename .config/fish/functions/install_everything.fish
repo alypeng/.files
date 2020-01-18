@@ -38,6 +38,7 @@ function install_everything
     brew install python
     brew install ripgrep
     brew install ruby
+    brew install shellcheck
     brew install shfmt
     brew install tidy-html5
 
