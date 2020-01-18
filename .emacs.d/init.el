@@ -312,6 +312,13 @@
 
 ;; shell
 
+(reformatter-define shell-format
+  :program "shfmt")
+
+(use-package
+  sh-script
+  :hook (sh-mode . shell-format-on-save-mode))
+
 (defvar my/shell-backend
   '(:separate company-fish-shell
               company-shell
