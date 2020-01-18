@@ -306,6 +306,24 @@
   :diminish
   :hook (python-mode . pipenv-mode))
 
+;; shell
+
+(defvar my/shell-backend
+  '(:separate company-fish-shell
+              company-shell
+              company-shell-env
+              :with ;;
+              company-files
+              company-dabbrev-code))
+
+(use-package
+  company-shell
+  :ensure t
+  :after (:any sh-script
+               fish-mode)
+  :config (push my/shell-backend company-backends)
+  :custom (company-shell-clean-manpage t))
+
 ;; web
 
 (use-package
