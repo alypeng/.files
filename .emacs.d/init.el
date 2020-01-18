@@ -208,6 +208,10 @@
   :hook (flycheck-mode . flycheck-indicator-mode))
 
 (use-package
+  reformatter
+  :ensure t)
+
+(use-package
   magit
   :ensure t
   :custom ;;
