@@ -324,6 +324,18 @@
   :bind ;;
   ("C-c w" . web-mode))
 
+(defvar my/web-backend
+  '(:separate company-web-html
+              :with ;;
+              company-files
+              company-dabbrev))
+
+(use-package
+  company-web
+  :ensure t
+  :after web-mode
+  :config (push my/web-backend company-backends))
+
 (use-package
   css-mode
   :custom (css-indent-offset 2)
