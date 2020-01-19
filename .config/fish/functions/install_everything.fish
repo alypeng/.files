@@ -51,6 +51,7 @@ function install_everything
     python -m pip install black
     python -m pip install flake8
     python -m pip install pipenv
+    python -m pip install proselint
 
     dotconfig git
 

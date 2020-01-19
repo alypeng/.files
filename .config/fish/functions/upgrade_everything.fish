@@ -19,6 +19,7 @@ function upgrade_everything
     python -m pip install --upgrade black
     python -m pip install --upgrade flake8
     python -m pip install --upgrade pipenv
+    python -m pip install --upgrade proselint
 
     fish_update_completions
 end
