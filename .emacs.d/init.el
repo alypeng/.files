@@ -262,6 +262,14 @@
   :ensure t
   :defer)
 
+;; dotenv
+
+(use-package
+  dotenv-mode
+  :ensure t
+  :mode "\\.env\\..*\\'"
+  :hook (dotenv-mode . my/indent-hook))
+
 ;; fish
 
 (defun my/fish-hook ()
