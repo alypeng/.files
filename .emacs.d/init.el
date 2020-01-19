@@ -113,11 +113,17 @@
   diminish
   :ensure t)
 
+(defun my/prefix ()
+  (interactive)
+  (setq unread-command-events (listify-key-sequence (kbd "C-c"))))
+
 (use-package
   evil
   :ensure t
   :diminish undo-tree-mode
   :init (evil-mode 1)
+  :config ;;
+  (evil-define-key '(normal visual) global-map (kbd "SPC") 'my/prefix)
   :custom ;;
   (evil-default-state "emacs")
   (evil-normal-state-modes '(text-mode prog-mode conf-mode))
@@ -155,9 +161,11 @@
                        (setq-local line-spacing 3)))
   :bind ;;
   ("C-s" . swiper)
+  ("C-M-s" . swiper-thing-at-point)
   ("M-x" . counsel-M-x)
   ("C-x b" . counsel-switch-buffer)
   ("C-x C-f" . counsel-find-file)
+  ("C-c r" . ivy-resume)
   ("<f1> f" . counsel-describe-function)
   ("<f1> v" . counsel-describe-variable)
   ("<f2> u" . counsel-unicode-char)
@@ -217,7 +225,9 @@
   :custom ;;
   (magit-diff-refine-hunk 'all)
   (magit-diff-refine-ignore-whitespace nil)
-  :bind ("C-x g" . magit-status))
+  :bind ;;
+  ("C-x g" . magit-status)
+  ("C-c g" . magit-status))
 
 (use-package
   projectile
