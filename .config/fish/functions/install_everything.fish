@@ -42,6 +42,7 @@ function install_everything
     brew install shfmt
     brew install tidy-html5
 
+    gem install mdl
     gem install rubocop
 
     npm install --global stylelint
