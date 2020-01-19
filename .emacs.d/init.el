@@ -300,6 +300,15 @@
   :custom (js-indent-level 2)
   :hook (json-mode . prettier-js-mode))
 
+;; markdown
+
+(use-package
+  markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :config (flycheck-add-next-checker 'markdown-mdl 'proselint)
+  :hook (markdown-mode . prettier-js-mode))
+
 ;; python
 
 (use-package
