@@ -227,7 +227,7 @@
   (magit-diff-refine-ignore-whitespace nil)
   :bind ;;
   ("C-x g" . magit-status)
-  ("C-c g" . magit-status))
+  ("C-c g" . magit-file-dispatch))
 
 (use-package
   projectile
@@ -315,6 +315,11 @@
   anaconda-mode
   :ensure t
   :diminish
+  :config (evil-define-key 'normal anaconda-mode-map ;
+            "gd" 'anaconda-mode-find-definitions     ;
+            "gh" 'anaconda-mode-show-doc             ;
+            "gr" 'anaconda-mode-find-references      ;
+            "gs" 'anaconda-mode-find-assignments)
   :hook ;;
   (python-mode . anaconda-mode)
   (python-mode . anaconda-eldoc-mode))
