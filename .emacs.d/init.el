@@ -246,6 +246,11 @@
   :ensure t
   :config (rg-enable-menu))
 
+(use-package
+  docker
+  :ensure t
+  :bind ("C-c d" . docker))
+
 ;; emacs-lisp
 
 (defun my/emacs-lisp-hook ()
@@ -263,6 +268,13 @@
   elisp-format
   :ensure t
   :defer)
+
+;; docker
+
+(use-package
+  dockerfile-mode
+  :ensure t
+  :hook (dockerfile-mode . my/indent-hook))
 
 ;; dotenv
 
