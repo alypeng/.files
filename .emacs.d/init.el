@@ -156,6 +156,8 @@
   :demand t
   :diminish ivy-mode
   :config (ivy-mode 1)
+  (ivy-configure 'counsel-M-x
+    :sort-fn #'ivy-string<)
   (advice-add 'ivy--minibuffer-setup
               :after (lambda ()
                        (setq-local line-spacing 3)))
