@@ -33,6 +33,7 @@ function install_everything
 
     brew install aspell
     brew install git
+    brew install hadolint
     brew install heroku
     brew install prettier
     brew install python
