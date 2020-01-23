@@ -18,6 +18,8 @@ switch (uname)
         set -x TERM xterm-256color
 end
 
+direnv hook fish | source
+
 solarized_light
 
 if status is-login

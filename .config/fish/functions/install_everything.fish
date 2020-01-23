@@ -32,6 +32,7 @@ function install_everything
     brew tap heroku/brew
 
     brew install aspell
+    brew install direnv
     brew install git
     brew install hadolint
     brew install heroku
