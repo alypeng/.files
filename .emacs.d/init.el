@@ -59,6 +59,10 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(defgroup my nil
+  ""
+  :group 'placeholder)
+
 (defun my/whitespace-hook ()
   (add-hook 'before-save-hook 'whitespace-cleanup nil t))
 
