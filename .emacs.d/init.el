@@ -251,6 +251,12 @@
   :config (rg-enable-menu))
 
 (use-package
+  direnv
+  :ensure t
+  :config (direnv-mode 1)
+  :hook (flycheck-before-syntax-check . direnv-update-environment))
+
+(use-package
   docker
   :ensure t
   :bind ("C-c d" . docker))
