@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cat - |
+    rubocop --auto-correct --force-exclusion --stdin "$*" |
+    sed '1,/^=\{20\}$/d'

@@ -7,6 +7,8 @@ switch (uname)
         set -x PATH /usr/local/opt/ruby/bin $PATH
         set -x PATH /usr/local/lib/ruby/gems/2.6.0/bin $PATH
 
+        set -x PATH ~/bin $PATH
+
     case Linux
         set -x PATH /usr/local/bin /usr/bin /usr/local/sbin /usr/sbin
 
@@ -14,6 +16,8 @@ switch (uname)
         set -x PATH /home/linuxbrew/.linuxbrew/bin $PATH
 
         set -x PATH /home/linuxbrew/.linuxbrew/opt/python/libexec/bin $PATH
+
+        set -x PATH ~/bin $PATH
 
         set -x TERM xterm-256color
 end

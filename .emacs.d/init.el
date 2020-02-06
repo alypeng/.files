@@ -366,6 +366,43 @@
   :diminish
   :hook (python-mode . pipenv-mode))
 
+;; ruby
+
+(reformatter-define ruby-format
+  :program "rubocopfmt"
+  :args (list buffer-file-name))
+
+(use-package
+  ruby-mode
+  :hook (ruby-mode . ruby-format-on-save-mode))
+
+(use-package
+  robe
+  :ensure t
+  :diminish
+  :config (evil-define-key 'normal robe-mode-map ;
+            "gd" 'robe-jump                      ;
+            "gh" 'robe-doc                       ;
+            "gr" 'robe-rails-refresh             ;
+            "gs" 'robe-start)
+  :hook (ruby-mode . robe-mode))
+
+(defvar my/ruby-backend ;;
+  '(company-robe :with company-keywords company-yasnippet))
+
+(defun my/web-robe-toggle (_ &rest ignore)
+  (when (equal major-mode 'web-mode)
+    (if (string= (web-mode-language-at-pos) "erb")
+        (unless robe-mode (robe-mode 1))
+      (if robe-mode (robe-mode 0)))))
+
+(use-package
+  company-robe
+  :after robe
+  :config (push my/ruby-backend company-backends)
+  (advice-add 'company-robe
+              :before #'my/web-robe-toggle))
+
 ;; shell
 
 (reformatter-define shell-format
