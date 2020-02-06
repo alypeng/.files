@@ -154,17 +154,20 @@
   :ensure t
   :bind ("C-c SPC" . avy-goto-char-timer))
 
+(defun my/ivy-setup ()
+  (ivy-mode 1)
+  (advice-add 'ivy--minibuffer-setup
+              :after (lambda ()
+                       (setq line-spacing 3)))
+  (ivy-configure 'counsel-M-x
+    :sort-fn #'ivy-string<))
+
 (use-package
   counsel
   :ensure t
   :demand t
   :diminish ivy-mode
-  :config (ivy-mode 1)
-  (ivy-configure 'counsel-M-x
-    :sort-fn #'ivy-string<)
-  (advice-add 'ivy--minibuffer-setup
-              :after (lambda ()
-                       (setq-local line-spacing 3)))
+  :config (my/ivy-setup)
   :bind ;;
   ("C-s" . swiper)
   ("C-M-s" . swiper-thing-at-point)
