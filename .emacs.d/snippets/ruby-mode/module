@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: module
+# key: mdl
+# --
+module $1
+  $0
+end

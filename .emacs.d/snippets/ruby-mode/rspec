@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: rspec
+# key: rsp
+# --
+require 'rails_helper'
+
+RSpec.describe $1${2:, type: :${3:$$(yas-choose-value '("feature" "system" "request" "model"))}} do
+  $0
+end

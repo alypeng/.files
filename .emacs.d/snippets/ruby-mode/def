@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: def
+# key: df
+# --
+def $1
+  $0
+end
