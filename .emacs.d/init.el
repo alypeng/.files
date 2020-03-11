@@ -336,6 +336,11 @@
   :config (flycheck-add-next-checker 'markdown-mdl 'proselint)
   :hook (markdown-mode . prettier-js-mode))
 
+(use-package
+  edit-indirect
+  :ensure t
+  :defer)
+
 ;; python
 
 (use-package
