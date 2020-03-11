@@ -187,7 +187,7 @@
   :demand t
   :config (global-company-mode)
   :custom ;;
-  (company-idle-delay 0.1)
+  (company-idle-delay 0.3)
   (company-minimum-prefix-length 2)
   (company-show-numbers t)
   (company-tooltip-align-annotations t)
