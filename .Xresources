@@ -35,7 +35,7 @@
 *background: base3
 *foreground: base00
 
-Xft.dpi: 90
+Xft.dpi: 96
 
 URxvt.font: xft:Hack:medium:size=14
 URxvt.letterSpace: -1
