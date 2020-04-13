@@ -2,5 +2,5 @@
 
 xrdb -load $HOME/.Xresources
 setxkbmap -option caps:escape
-redshift -O 3500 -P
+redshift -O 4500 -P
 exec i3
