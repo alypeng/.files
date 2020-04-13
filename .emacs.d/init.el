@@ -34,7 +34,7 @@
 
 (set-face-attribute 'default nil
                     :family "Hack"
-                    :height 140)
+                    :height (if (string= system-type "darwin") 140 130))
 
 (setq delete-by-moving-to-trash t)
 (setq enable-recursive-minibuffers t)
