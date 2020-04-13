@@ -7,8 +7,6 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
@@ -30,7 +28,6 @@
 
 (delete-selection-mode 1)
 (electric-pair-mode 1)
-(winner-mode 1)
 
 (set-face-attribute 'default nil
                     :family "Hack"
