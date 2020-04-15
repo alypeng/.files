@@ -11,8 +11,8 @@ function upgrade_everything
     brew upgrade
     brew cleanup -s
 
-    gem update
-    gem cleanup
+    set -lx BUNDLE_GEMFILE ~/.files/Gemfile
+    bundle update --all
 
     npm upgrade --global
 

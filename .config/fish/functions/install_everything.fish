@@ -44,8 +44,14 @@ function install_everything
     brew install shfmt
     brew install tidy-html5
 
-    gem install mdl
-    gem install rubocop
+    gem install bundler
+
+    set -lx BUNDLE_GEMFILE ~/.files/Gemfile
+    bundle install
+
+    set -lx BUNDLE_BIN bin/bundle
+    bundle binstubs mdl
+    bundle binstubs rubocop
 
     npm install --global stylelint
     npm install --global stylelint-config-recommended-scss
@@ -59,6 +65,7 @@ function install_everything
     dotconfig git
 
     dotfile .aspell.conf
+    dotfile .bundle
     dotfile .emacs.d
     dotfile .stylelintrc.json
     dotfile .tidyrc.txt
