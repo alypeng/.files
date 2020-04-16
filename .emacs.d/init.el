@@ -33,13 +33,11 @@
                     :family "Hack"
                     :height (if (string= system-type "darwin") 140 130))
 
-(setq delete-by-moving-to-trash t)
 (setq enable-recursive-minibuffers t)
 (setq gc-cons-threshold 30000000)
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 (setq require-final-newline t)
-(setq ring-bell-function nil)
 (setq save-interprogram-paste-before-kill t)
 (setq split-height-threshold nil)
 (setq uniquify-buffer-name-style 'post-forward)
@@ -142,8 +140,7 @@
   ace-window
   :ensure t
   :diminish
-  :custom ;;
-  (aw-dispatch-always t)
+  :custom (aw-dispatch-always t)
   :bind ("M-o" . ace-window))
 
 (use-package
@@ -212,9 +209,9 @@
 (use-package
   flycheck
   :ensure t
-  :config (global-flycheck-mode)
-  (add-to-list 'display-buffer-alist my/flycheck-buffer)
-  :custom (flycheck-display-errors-function nil))
+  :config ;;
+  (global-flycheck-mode)
+  (add-to-list 'display-buffer-alist my/flycheck-buffer))
 
 (use-package
   flycheck-indicator
@@ -448,8 +445,7 @@
   (web-mode-script-padding 2)
   (web-mode-style-padding 2)
   :hook (web-mode . my/indent-hook)
-  :bind ;;
-  ("C-c w" . web-mode))
+  :bind ("C-c w" . web-mode))
 
 (defvar my/web-backend
   '(:separate company-web-html
