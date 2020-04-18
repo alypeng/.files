@@ -1,15 +1,19 @@
 function upgrade_everything
     brew update
+    brew upgrade
 
     if test (uname) = "Darwin"
         brew cask upgrade
     else
+        brew link --overwrite ruby
+
         sudo dnf --refresh upgrade
         sudo dnf --refresh autoremove
     end
 
-    brew upgrade
     brew cleanup -s
+
+    gem install bundler
 
     set -lx BUNDLE_GEMFILE ~/.files/Gemfile
     bundle update --all
