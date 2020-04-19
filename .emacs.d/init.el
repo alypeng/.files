@@ -483,6 +483,6 @@
 ;;; init.el ends here
 
 ;; Local Variables:
-;; byte-compile-warnings: (not free-vars noruntime)
+;; byte-compile-warnings: (not free-vars noruntime unresolved)
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
 ;; End:
