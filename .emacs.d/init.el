@@ -65,8 +65,11 @@
 (add-hook 'prog-mode-hook 'my/whitespace-hook)
 (add-hook 'conf-mode-hook 'my/whitespace-hook)
 
-(defun my/indent-hook ()
-  (add-hook 'before-save-hook 'my/indent-buffer nil t))
+(define-minor-mode indent-on-save-mode ""
+  :lighter nil
+  (if indent-on-save-mode ;;
+      (add-hook 'before-save-hook 'my/indent-buffer nil t)
+    (remove-hook 'before-save-hook 'my/indent-buffer t)))
 
 (defun my/indent-buffer ()
   (save-excursion (indent-region (point-min)
@@ -260,8 +263,11 @@
 
 ;; emacs-lisp
 
-(defun my/emacs-lisp-hook ()
-  (add-hook 'before-save-hook 'my/emacs-lisp-format nil t))
+(define-minor-mode emacs-lisp-format-on-save-mode ""
+  :lighter nil
+  (if emacs-lisp-format-on-save-mode ;;
+      (add-hook 'before-save-hook 'my/emacs-lisp-format nil t)
+    (remove-hook 'before-save-hook 'my/emacs-lisp-format t)))
 
 (defun my/emacs-lisp-format ()
   (elisp-format-buffer)
@@ -269,7 +275,7 @@
 
 (use-package
   elisp-mode
-  :hook (emacs-lisp-mode . my/emacs-lisp-hook))
+  :hook (emacs-lisp-mode . emacs-lisp-format-on-save-mode))
 
 (use-package
   elisp-format
@@ -281,7 +287,7 @@
 (use-package
   dockerfile-mode
   :ensure t
-  :hook (dockerfile-mode . my/indent-hook))
+  :hook (dockerfile-mode . indent-on-save-mode))
 
 ;; dotenv
 
@@ -289,29 +295,32 @@
   dotenv-mode
   :ensure t
   :mode "\\.env\\..*\\'"
-  :hook (dotenv-mode . my/indent-hook))
+  :hook (dotenv-mode . indent-on-save-mode))
 
 ;; fish
 
-(defun my/fish-hook ()
-  (add-hook 'before-save-hook 'fish_indent nil t))
+(define-minor-mode fish-format-on-save-mode ""
+  :lighter nil
+  (if fish-format-on-save-mode ;;
+      (add-hook 'before-save-hook 'fish_indent nil t)
+    (remove-hook 'before-save-hook 'fish_indent t)))
 
 (use-package
   fish-mode
   :ensure t
-  :hook (fish-mode . my/fish-hook))
+  :hook (fish-mode . fish-format-on-save-mode))
 
 ;; git
 
 (use-package
   gitconfig-mode
   :ensure t
-  :hook (gitconfig-mode . my/indent-hook))
+  :hook (gitconfig-mode . indent-on-save-mode))
 
 (use-package
   gitignore-mode
   :ensure t
-  :hook (gitignore-mode . my/indent-hook))
+  :hook (gitignore-mode . indent-on-save-mode))
 
 ;; json
 
@@ -444,7 +453,7 @@
   (web-mode-markup-indent-offset 2)
   (web-mode-script-padding 2)
   (web-mode-style-padding 2)
-  :hook (web-mode . my/indent-hook)
+  :hook (web-mode . indent-on-save-mode)
   :bind ("C-c w" . web-mode))
 
 (defvar my/web-backend
