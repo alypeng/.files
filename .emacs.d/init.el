@@ -398,8 +398,13 @@
             "gs" 'robe-start)
   :hook (ruby-mode . robe-mode))
 
-(defvar my/ruby-backend ;;
-  '(company-robe :with company-keywords company-yasnippet))
+(defvar my/ruby-backend
+  '(company-dabbrev-code ;;
+    :with company-keywords company-yasnippet))
+
+(defvar my/robe-backend
+  '(company-robe ;;
+    :with company-keywords company-yasnippet))
 
 (defun my/web-robe-toggle (_ &rest ignore)
   (when (equal major-mode 'web-mode)
@@ -410,7 +415,9 @@
 (use-package
   company-robe
   :after robe
-  :config (push my/ruby-backend company-backends)
+  :config ;;
+  (push my/robe-backend company-backends)
+  (push my/ruby-backend company-backends)
   (advice-add 'company-robe
               :before #'my/web-robe-toggle))
 
