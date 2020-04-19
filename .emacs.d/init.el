@@ -51,6 +51,7 @@
 (setq auto-save-file-name-transforms '((".*"  "~/.emacs.d/auto-save/" t)))
 (setq backup-directory-alist         '(("." . "~/.emacs.d/backup/")))
 (setq custom-file                             "~/.emacs.d/null.el")
+(setq trash-directory                         "~/.emacs.d/trash/")
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
