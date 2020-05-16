@@ -479,6 +479,15 @@
   :hook (css-mode . prettier-js-mode))
 
 (use-package
+  emmet-mode
+  :ensure t
+  :diminish
+  :custom ;;
+  (emmet-move-cursor-between-quotes t)
+  (emmet-self-closing-tag-style " /")
+  :hook (web-mode css-mode))
+
+(use-package
   prettier-js
   :ensure t
   :diminish
