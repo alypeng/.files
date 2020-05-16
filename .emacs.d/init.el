@@ -31,7 +31,7 @@
 
 (set-face-attribute 'default nil
                     :family "Hack"
-                    :height (if (string= system-type "darwin") 140 130))
+                    :height (if (eq system-type 'darwin) 140 130))
 
 (setq enable-recursive-minibuffers t)
 (setq inhibit-startup-screen t)
@@ -103,6 +103,12 @@
 (use-package
   vc
   :config (delete '(vc-mode vc-mode) mode-line-format))
+
+(use-package
+  exec-path-from-shell
+  :ensure t
+  :config (when (eq window-system 'ns)
+            (exec-path-from-shell-initialize)))
 
 (use-package
   solarized-theme
