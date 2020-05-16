@@ -34,7 +34,6 @@
                     :height (if (string= system-type "darwin") 140 130))
 
 (setq enable-recursive-minibuffers t)
-(setq gc-cons-threshold 30000000)
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 (setq require-final-newline t)
@@ -42,7 +41,6 @@
 (setq split-height-threshold nil)
 (setq uniquify-buffer-name-style 'post-forward)
 
-(setq-default fill-column 80)
 (setq-default indent-tabs-mode nil)
 (setq-default line-spacing 3)
 (setq-default tab-width 4)
@@ -77,7 +75,6 @@
                                  (point-max))))
 
 (bind-key "C-c a" 'align-regexp)
-(bind-key "C-c l" 'global-display-line-numbers-mode)
 (bind-key "C-c t" 'sort-lines)
 
 (use-package
@@ -105,7 +102,7 @@
 
 (use-package
   vc
-  :custom (vc-handled-backends nil))
+  :config (delete '(vc-mode vc-mode) mode-line-format))
 
 (use-package
   solarized-theme
@@ -241,9 +238,7 @@
   :ensure t
   :diminish
   :config (projectile-mode 1)
-  :custom ;;
-  (projectile-completion-system 'ivy)
-  (projectile-dynamic-mode-line nil)
+  :custom (projectile-completion-system 'ivy)
   :bind-keymap ("C-c p" . projectile-command-map))
 
 (use-package
