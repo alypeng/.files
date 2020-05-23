@@ -18,6 +18,9 @@ function install_everything
         sudo dnf install i3
         sudo dnf install redshift
 
+        sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-(rpm -E %fedora).noarch.rpm
+        sudo dnf install ffmpeg-libs
+
         sudo chown -R $USER:$USER ~/.cache
 
         dotconfig gtk-3.0
