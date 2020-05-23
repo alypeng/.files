@@ -204,6 +204,12 @@
   :diminish yas-minor-mode
   :config (yas-global-mode))
 
+(use-package
+  dumb-jump
+  :ensure t
+  :custom (dumb-jump-selector 'ivy)
+  :config (dumb-jump-mode 1))
+
 (defvar my/flycheck-buffer
   '("flycheck errors" ;;
     (display-buffer-reuse-window display-buffer-in-side-window)
