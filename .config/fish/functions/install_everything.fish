@@ -30,13 +30,10 @@ function install_everything
         dotfile .xinitrc
     end
 
-    brew tap heroku/brew
-
     brew install aspell
     brew install direnv
     brew install git
     brew install hadolint
-    brew install heroku
     brew install prettier
     brew install python
     brew install ripgrep
