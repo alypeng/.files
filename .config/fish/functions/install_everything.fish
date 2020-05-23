@@ -22,6 +22,7 @@ function install_everything
 
         dotconfig gtk-3.0
         dotconfig i3
+        dotconfig i3status
 
         ln -fs ~/.files/.local/share/fonts ~/.local/share
 
