@@ -19,6 +19,8 @@ end
 set -x PATH ~/bin/bundle $PATH
 set -x PATH ~/bin $PATH
 
+set -x LESSHISTFILE /dev/null
+
 direnv hook fish | source
 
 solarized_light
