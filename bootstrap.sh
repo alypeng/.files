@@ -1,36 +1,35 @@
 #!/usr/bin/env bash
 
 if [ "$(uname)" == "Darwin" ]; then
-    HOMEBREW_INSTALLER="https://raw.githubusercontent.com/homebrew/install/master/install"
-else
-    sudo dnf --refresh upgrade
-    sudo dnf --refresh autoremove
+    HOMEBREW_INSTALLER="https://raw.githubusercontent.com/homebrew/install/master/install.sh"
 
-    sudo dnf install ruby
-    sudo dnf install tar
+    curl -fLsS $HOMEBREW_INSTALLER | bash
 
-    export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+    brew analytics off
 
-    HOMEBREW_INSTALLER="https://raw.githubusercontent.com/linuxbrew/install/master/install"
-fi
-
-ruby -e "$(curl -fLsS $HOMEBREW_INSTALLER)"
-
-brew analytics off
-
-if [ "$(uname)" == "Darwin" ]; then
     brew update
     brew install fish
 
     which fish | sudo tee -a /etc/shells
 else
-    sudo dnf install fish
-    sudo dnf install util-linux-user
+    sudo dnf --refresh upgrade
+    sudo dnf --refresh autoremove
+
+    sudo dnf install \
+        fish \
+        tar \
+        util-linux-user
 fi
 
 chsh -s "$(which fish)"
 
-git clone https://github.com/alypeng/.files.git $HOME/.files
+git clone https://github.com/alypeng/.files.git "$HOME"/.files
 
-mkdir -p $HOME/.config
-ln -fs $HOME/.files/.config/fish $HOME/.config
+mkdir -p "$HOME"/.config
+
+ln -fs "$HOME"/.files/.config/fish "$HOME"/.config
+ln -fs "$HOME"/.files/.config/nixpkgs "$HOME"/.config
+
+curl -fLsS https://nixos.org/nix/install | sh
+
+"$HOME"/.nix-profile/bin/nix-env --install --attr nixpkgs.myPackages

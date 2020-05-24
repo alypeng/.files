@@ -1,7 +1,7 @@
 function install_everything
-    brew update
-
     if test (uname) = "Darwin"
+        brew update
+
         brew cask install docker
         brew cask install emacs
         brew cask install firefox
@@ -10,16 +10,16 @@ function install_everything
     else
         sudo dnf check-update
 
-        sudo dnf group install base-x
-
-        sudo dnf install alsa-plugins-pulseaudio
-        sudo dnf install emacs
-        sudo dnf install firefox
-        sudo dnf install i3
-        sudo dnf install redshift
+        sudo dnf -y group install base-x
 
         sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-(rpm -E %fedora).noarch.rpm
-        sudo dnf install ffmpeg-libs
+        sudo dnf install \
+            alsa-plugins-pulseaudio \
+            emacs \
+            ffmpeg-libs \
+            firefox \
+            i3 \
+            redshift
 
         sudo chown -R $USER:$USER ~/.cache
 
@@ -33,35 +33,16 @@ function install_everything
         dotfile .xinitrc
     end
 
-    brew install aspell
-    brew install direnv
-    brew install git
-    brew install hadolint
-    brew install prettier
-    brew install python
-    brew install ripgrep
-    brew install ruby
-    brew install shellcheck
-    brew install shfmt
-    brew install tidy-html5
+    nix-env --install --attr \
+        nixpkgs.myPackages \
+        nixpkgs.myPythonPackages
 
-    gem install bundler
+    dotfile .npmrc
 
-    set -lx BUNDLE_GEMFILE ~/.files/Gemfile
-    bundle install
-
-    set -lx BUNDLE_BIN bin/bundle
-    bundle binstubs mdl
-    bundle binstubs rubocop
-
-    npm install --global stylelint
-    npm install --global stylelint-config-recommended-scss
-    npm install --global stylelint-scss
-
-    python -m pip install black
-    python -m pip install flake8
-    python -m pip install pipenv
-    python -m pip install proselint
+    npm install --global \
+        stylelint \
+        stylelint-config-recommended-scss \
+        stylelint-scss
 
     dotconfig git
 
