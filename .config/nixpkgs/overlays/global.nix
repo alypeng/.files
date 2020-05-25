@@ -15,6 +15,7 @@ in {
       git
       hadolint
       html-tidy
+      nixfmt
       nodePackages.prettier
       nodejs
       pipenv
