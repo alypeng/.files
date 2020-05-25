@@ -303,11 +303,8 @@
 
 ;; fish
 
-(define-minor-mode fish-format-on-save-mode ""
-  :lighter nil
-  (if fish-format-on-save-mode ;;
-      (add-hook 'before-save-hook 'fish_indent nil t)
-    (remove-hook 'before-save-hook 'fish_indent t)))
+(reformatter-define fish-format
+  :program "fish_indent")
 
 (use-package
   fish-mode
