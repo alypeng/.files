@@ -2,11 +2,11 @@ function install_everything
     if test (uname) = "Darwin"
         brew update
 
-        brew cask install docker
-        brew cask install emacs
-        brew cask install firefox
-
-        brew cask install homebrew/cask-fonts/font-hack
+        brew cask install \
+            docker \
+            emacs \
+            firefox \
+            homebrew/cask-fonts/font-hack
     else
         sudo dnf check-update
 
@@ -43,6 +43,8 @@ function install_everything
         stylelint \
         stylelint-config-recommended-scss \
         stylelint-scss
+
+    mkdir -p ~/projects
 
     dotconfig git
 

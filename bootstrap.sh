@@ -32,4 +32,6 @@ ln -fs "$HOME"/.files/.config/nixpkgs "$HOME"/.config
 
 curl -fLsS https://nixos.org/nix/install | sh
 
-"$HOME"/.nix-profile/bin/nix-env --install --attr nixpkgs.myPackages
+# shellcheck disable=SC1090
+source "$HOME"/.nix-profile/etc/profile.d/nix.sh
+nix-env --install --attr nixpkgs.myPackages
