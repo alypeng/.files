@@ -348,6 +348,16 @@
   :ensure t
   :defer)
 
+;; nix
+
+(reformatter-define nix-format
+  :program "nixfmt")
+
+(use-package
+  nix-mode
+  :ensure t
+  :hook (nix-mode . nix-format-on-save-mode))
+
 ;; python
 
 (use-package
