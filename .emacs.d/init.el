@@ -108,6 +108,7 @@
   exec-path-from-shell
   :ensure t
   :config (when (eq window-system 'ns)
+            (push "ASPELL_CONF" exec-path-from-shell-variables)
             (exec-path-from-shell-initialize)))
 
 (use-package

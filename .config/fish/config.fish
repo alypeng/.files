@@ -2,6 +2,8 @@ switch (uname)
     case Darwin
         set -x PATH /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin
 
+        set -x ASPELL_CONF "data-dir $HOME/.nix-profile/lib/aspell"
+
     case Linux
         set -x PATH /usr/local/bin /usr/bin /usr/local/sbin /usr/sbin
 
