@@ -66,7 +66,7 @@
 
 (define-minor-mode indent-on-save-mode ""
   :lighter nil
-  (if indent-on-save-mode ;;
+  (if indent-on-save-mode
       (add-hook 'before-save-hook 'my/indent-buffer nil t)
     (remove-hook 'before-save-hook 'my/indent-buffer t)))
 
@@ -89,7 +89,7 @@
 (use-package
   flyspell
   :diminish
-  :custom ;;
+  :custom
   (flyspell-issue-message-flag nil)
   (flyspell-issue-welcome-flag nil)
   (ispell-extra-args '("--run-together"))
@@ -128,9 +128,9 @@
   :ensure t
   :diminish undo-tree-mode
   :init (evil-mode 1)
-  :config ;;
+  :config
   (evil-define-key '(normal visual) global-map (kbd "SPC") 'my/prefix)
-  :custom ;;
+  :custom
   (evil-default-state "emacs")
   (evil-normal-state-modes '(text-mode prog-mode conf-mode))
   (evil-want-C-u-scroll t)
@@ -160,8 +160,7 @@
   (advice-add 'ivy--minibuffer-setup
               :after (lambda ()
                        (setq line-spacing 3)))
-  (ivy-configure 'counsel-M-x
-    :sort-fn #'ivy-string<))
+  (ivy-configure 'counsel-M-x :sort-fn #'ivy-string<))
 
 (use-package
   counsel
@@ -169,7 +168,7 @@
   :demand t
   :diminish ivy-mode
   :config (my/ivy-setup)
-  :bind ;;
+  :bind
   ("C-s" . swiper)
   ("C-M-s" . swiper-thing-at-point)
   ("M-x" . counsel-M-x)
@@ -187,7 +186,7 @@
   :ensure t
   :demand t
   :config (global-company-mode)
-  :custom ;;
+  :custom
   (company-idle-delay 0.3)
   (company-minimum-prefix-length 2)
   (company-show-numbers t)
@@ -211,14 +210,14 @@
   :config (dumb-jump-mode 1))
 
 (defvar my/flycheck-buffer
-  '("flycheck errors" ;;
+  '("flycheck errors"
     (display-buffer-reuse-window display-buffer-in-side-window)
     (window-height . 0.2)))
 
 (use-package
   flycheck
   :ensure t
-  :config ;;
+  :config
   (global-flycheck-mode)
   (add-to-list 'display-buffer-alist my/flycheck-buffer))
 
@@ -234,10 +233,10 @@
 (use-package
   magit
   :ensure t
-  :custom ;;
+  :custom
   (magit-diff-refine-hunk 'all)
   (magit-diff-refine-ignore-whitespace nil)
-  :bind ;;
+  :bind
   ("C-x g" . magit-status)
   ("C-c g" . magit-file-dispatch))
 
@@ -265,27 +264,6 @@
   :ensure t
   :bind ("C-c d" . docker))
 
-;; emacs-lisp
-
-(define-minor-mode emacs-lisp-format-on-save-mode ""
-  :lighter nil
-  (if emacs-lisp-format-on-save-mode ;;
-      (add-hook 'before-save-hook 'my/emacs-lisp-format nil t)
-    (remove-hook 'before-save-hook 'my/emacs-lisp-format t)))
-
-(defun my/emacs-lisp-format ()
-  (elisp-format-buffer)
-  (elisp-format-buffer))
-
-(use-package
-  elisp-mode
-  :hook (emacs-lisp-mode . emacs-lisp-format-on-save-mode))
-
-(use-package
-  elisp-format
-  :ensure t
-  :defer)
-
 ;; docker
 
 (use-package
@@ -300,6 +278,12 @@
   :ensure t
   :mode "\\.env\\..*\\'"
   :hook (dotenv-mode . indent-on-save-mode))
+
+;; emacs-lisp
+
+(use-package
+  elisp-mode
+  :hook (emacs-lisp-mode . indent-on-save-mode))
 
 ;; fish
 
@@ -361,12 +345,12 @@
   anaconda-mode
   :ensure t
   :diminish
-  :config (evil-define-key 'normal anaconda-mode-map ;
-            "gd" 'anaconda-mode-find-definitions     ;
-            "gh" 'anaconda-mode-show-doc             ;
-            "gr" 'anaconda-mode-find-references      ;
+  :config (evil-define-key 'normal anaconda-mode-map
+            "gd" 'anaconda-mode-find-definitions
+            "gh" 'anaconda-mode-show-doc
+            "gr" 'anaconda-mode-find-references
             "gs" 'anaconda-mode-find-assignments)
-  :hook ;;
+  :hook
   (python-mode . anaconda-mode)
   (python-mode . anaconda-eldoc-mode))
 
@@ -402,10 +386,10 @@
   robe
   :ensure t
   :diminish
-  :config (evil-define-key 'normal robe-mode-map ;
-            "gd" 'robe-jump                      ;
-            "gh" 'robe-doc                       ;
-            "gr" 'robe-rails-refresh             ;
+  :config (evil-define-key 'normal robe-mode-map
+            "gd" 'robe-jump
+            "gh" 'robe-doc
+            "gr" 'robe-rails-refresh
             "gs" 'robe-start)
   :hook (ruby-mode . robe-mode))
 
@@ -426,7 +410,7 @@
 (use-package
   company-robe
   :after robe
-  :config ;;
+  :config
   (push 'company-robe company-backends)
   (push 'company-ruby company-backends)
   (advice-add 'company-robe
@@ -445,7 +429,7 @@
   '(:separate company-fish-shell
               company-shell
               company-shell-env
-              :with ;;
+              :with
               company-files
               company-dabbrev-code))
 
@@ -464,7 +448,7 @@
   :ensure t
   :mode ("\\.html?\\'" "\\.erb\\'")
   :config (flycheck-add-mode 'html-tidy 'web-mode)
-  :custom ;;
+  :custom
   (flycheck-tidyrc "~/.tidyrc.txt")
   (web-mode-code-indent-offset 2)
   (web-mode-css-indent-offset 2)
@@ -476,7 +460,7 @@
 
 (defvar my/web-backend
   '(:separate company-web-html
-              :with ;;
+              :with
               company-files
               company-dabbrev))
 
@@ -495,7 +479,7 @@
   emmet-mode
   :ensure t
   :diminish
-  :custom ;;
+  :custom
   (emmet-move-cursor-between-quotes t)
   (emmet-self-closing-tag-style " /")
   :hook (web-mode css-mode))
