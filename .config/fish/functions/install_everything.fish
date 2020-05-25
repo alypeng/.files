@@ -27,7 +27,7 @@ function install_everything
         dotconfig i3
         dotconfig i3status
 
-        ln -fs ~/.files/.local/share/fonts ~/.local/share
+        ln -fs ~/.nix-profile/share/fonts ~/.local/share
 
         dotfile .Xresources
         dotfile .xinitrc

@@ -13,6 +13,7 @@ in {
       direnv
       fish-foreign-env
       git
+      hack-font
       hadolint
       html-tidy
       nixfmt
