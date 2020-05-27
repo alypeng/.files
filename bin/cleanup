@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+find "$HOME"/.emacs.d/{auto-save*,backup,trash} \
+    -mindepth 1 \
+    -not -name ".gitignore" \
+    -delete
+
+find "$HOME"/.local/share/fish \
+    -name "*_history" \
+    -delete
