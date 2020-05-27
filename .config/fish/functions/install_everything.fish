@@ -29,6 +29,7 @@ function install_everything
 
         ln -fs ~/.nix-profile/share/fonts ~/.local/share
 
+        dotfile .Xmodmap
         dotfile .Xresources
         dotfile .xinitrc
     end
