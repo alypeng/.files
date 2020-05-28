@@ -419,6 +419,12 @@
   (advice-add 'company-robe
               :before #'my/robe-toggle))
 
+;; scheme
+
+(use-package
+  scheme
+  :hook (scheme-mode . indent-on-save-mode))
+
 ;; shell
 
 (reformatter-define shell-format
