@@ -16,6 +16,7 @@ in {
       hack-font
       hadolint
       html-tidy
+      mitscheme
       nixfmt
       nodePackages.prettier
       nodejs
