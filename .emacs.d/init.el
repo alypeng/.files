@@ -163,7 +163,9 @@
   (advice-add 'ivy--minibuffer-setup
               :after (lambda ()
                        (setq line-spacing 3)))
-  (ivy-configure 'counsel-M-x :sort-fn #'ivy-string<))
+  (ivy-configure 'counsel-M-x :sort-fn #'ivy-string<)
+  (ivy-configure 'counsel-describe-function :sort-fn #'ivy-string<)
+  (ivy-configure 'counsel-describe-variable :sort-fn #'ivy-string<))
 
 (use-package
   counsel
