@@ -134,10 +134,11 @@
   :config
   (evil-define-key '(normal visual) global-map (kbd "SPC") 'my/prefix)
   :custom
+  (evil-cross-lines t)
   (evil-default-state "emacs")
   (evil-normal-state-modes '(text-mode prog-mode conf-mode))
+  (evil-want-C-u-delete t)
   (evil-want-C-u-scroll t)
-  (evil-want-visual-char-semi-exclusive t)
   :bind ("C-=" . universal-argument))
 
 (use-package
