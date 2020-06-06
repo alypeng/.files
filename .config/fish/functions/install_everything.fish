@@ -48,6 +48,7 @@ function install_everything
     mkdir -p ~/projects
 
     dotconfig git
+    dotconfig proselint
 
     dotfile .aspell.conf
     dotfile .bundle
