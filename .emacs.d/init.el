@@ -98,6 +98,14 @@
   (ispell-program-name "aspell")
   :hook ((text-mode prog-mode conf-mode) . flyspell-mode))
 
+(defun my/colourise-compilation ()
+  (ansi-color-apply-on-region compilation-filter-start
+                              (point)))
+
+(use-package
+  ansi-color
+  :hook (compilation-filter . my/colourise-compilation))
+
 (use-package
   eldoc
   :diminish)
