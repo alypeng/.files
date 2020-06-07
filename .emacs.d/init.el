@@ -235,9 +235,24 @@
   (global-flycheck-mode)
   (add-to-list 'display-buffer-alist my/flycheck-buffer))
 
+(defun my/flycheck-icons (info warnings errors)
+  (list
+   (my/flycheck-icon "info" info)
+   (my/flycheck-icon "warning" warnings)
+   (my/flycheck-icon "error" errors)))
+
+(defun my/flycheck-icon (type count)
+  (let ((icon (intern-soft (concat "flycheck-indicator-icon-" type)))
+        (face (intern-soft (concat "flycheck-indicator-" type))))
+    (when (> count 0)
+      (propertize (format " %c%s" (symbol-value icon) count)
+                  'font-lock-face face))))
+
 (use-package
   flycheck-indicator
   :ensure t
+  :config (advice-add 'flycheck-indicator--icons-formatter
+                      :override #'my/flycheck-icons)
   :hook (flycheck-mode . flycheck-indicator-mode))
 
 (use-package
