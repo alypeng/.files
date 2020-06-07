@@ -405,7 +405,10 @@
 
 (reformatter-define ruby-format
   :program "rubocopfmt"
-  :args (list buffer-file-name))
+  :args (list (my/project-buffer-file-relative-name)))
+
+(defun my/project-buffer-file-relative-name ()
+  (file-relative-name buffer-file-name (projectile-project-root)))
 
 (use-package
   ruby-mode
