@@ -1,10 +1,6 @@
 self: super:
 
-let
-  rubyPackages = import (fetchTarball
-    "https://github.com/nixos/nixpkgs/archive/ab931c607b3c351c2bbd8a1ad9a30b75a51d5e50.tar.gz")
-    { };
-in {
+{
   myPackages = super.buildEnv {
     name = "my-packages";
     paths = with self; [
@@ -23,9 +19,6 @@ in {
       pipenv
       proselint
       ripgrep
-      ruby
-      rubyPackages.pry
-      rubyPackages.rubocop
       shellcheck
       shfmt
     ];
@@ -34,4 +27,6 @@ in {
 
   myPythonPackages =
     super.python37.withPackages (ps: with ps; [ black flake8 ]);
+
+  myRubyPackages = super.ruby.withPackages (ps: with ps; [ pry rubocop ]);
 }
