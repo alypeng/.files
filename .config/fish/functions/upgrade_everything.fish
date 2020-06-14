@@ -13,10 +13,10 @@ function upgrade_everything
 
     nix-channel --update
 
-    nix-env --install --attr \
-        nixpkgs.myPackages \
-        nixpkgs.myPythonPackages \
-        nixpkgs.nix
+    nix-env --install --attr nixpkgs.myPackages
+
+    nix-env --delete-generations 14d
+    nix-store --gc
 
     npm upgrade --global
 

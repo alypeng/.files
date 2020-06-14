@@ -34,10 +34,7 @@ function install_everything
         dotfile .xinitrc
     end
 
-    nix-env --install --attr \
-        nixpkgs.myPackages \
-        nixpkgs.myPythonPackages \
-        nixpkgs.myRubyPackages
+    nix-env --install --attr nixpkgs.myPackages
 
     dotfile .npmrc
 
