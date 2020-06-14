@@ -24,7 +24,6 @@ in {
       proselint
       ripgrep
       ruby
-      rubyPackages.mdl
       rubyPackages.pry
       rubyPackages.rubocop
       shellcheck
