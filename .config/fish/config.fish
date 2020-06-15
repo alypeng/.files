@@ -18,6 +18,7 @@ fenv source "$HOME"/.nix-profile/etc/profile.d/nix.sh
 set -x PATH "$HOME"/bin "$HOME"/.npm/bin $PATH
 
 set -x LESSHISTFILE /dev/null
+set -x PREFIX "$HOME"/.npm
 
 direnv hook fish | source
 
