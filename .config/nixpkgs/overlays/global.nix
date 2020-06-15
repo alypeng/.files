@@ -22,7 +22,7 @@ let
     shfmt
   ];
 
-  myLinuxPackages = with self; [ mitscheme strace ];
+  myLinuxPackages = with self; [ cask mitscheme strace ];
 
   myPythonPackages =
     super.python37.withPackages (ps: with ps; [ black flake8 ]);
