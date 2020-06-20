@@ -17,6 +17,7 @@ let
     nixfmt
     nodePackages.prettier
     nodejs
+    ocamlformat
     opam
     pipenv
     proselint
