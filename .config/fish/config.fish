@@ -7,8 +7,6 @@ if status is-login
 
         case Linux
             set -x PATH /usr/local/bin /usr/bin /usr/local/sbin /usr/sbin
-
-            set -x TERM xterm-256color
     end
 
     set fish_function_path $fish_function_path \
@@ -16,8 +14,11 @@ if status is-login
 
     fenv source "$HOME"/.nix-profile/etc/profile.d/nix.sh
 
+    source "$HOME"/.opam/opam-init/init.fish
+
     set -x PATH "$HOME"/bin "$HOME"/.npm/bin $PATH
 
+    set -x EDITOR vi
     set -x LESSHISTFILE /dev/null
     set -x PREFIX "$HOME"/.npm
 
