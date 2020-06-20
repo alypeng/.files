@@ -116,10 +116,11 @@
 
 (use-package
   exec-path-from-shell
+  :if (eq window-system 'ns)
   :ensure t
-  :config (when (eq window-system 'ns)
-            (push "ASPELL_CONF" exec-path-from-shell-variables)
-            (exec-path-from-shell-initialize)))
+  :config
+  (push "ASPELL_CONF" exec-path-from-shell-variables)
+  (exec-path-from-shell-initialize))
 
 (use-package
   solarized-theme
