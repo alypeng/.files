@@ -76,6 +76,9 @@
   (save-excursion (indent-region (point-min)
                                  (point-max))))
 
+(defun my/project-buffer-file-relative-name ()
+  (file-relative-name buffer-file-name (projectile-project-root)))
+
 (bind-key "C-c a" 'align-regexp)
 (bind-key "C-c t" 'sort-lines)
 
@@ -369,6 +372,65 @@
   :ensure t
   :hook (nix-mode . nix-format-on-save-mode))
 
+;; ocaml
+
+(reformatter-define ocaml-format
+  :program "ocamlformat"
+  :args (list "--enable-outside-detected-project"
+              "--name" (my/project-buffer-file-relative-name)
+              "-"))
+
+(use-package
+  tuareg
+  :ensure t
+  :hook (tuareg-mode . ocaml-format-on-save-mode))
+
+(use-package
+  merlin
+  :ensure t
+  :diminish
+  :config
+  (push 'merlin-xref-backend xref-backend-functions)
+  (evil-define-key 'normal merlin-mode-map
+    "gh" 'merlin-document
+    "gr" 'merlin-occurrences
+    "gs" 'merlin-jump)
+  :custom
+  (merlin-completion-with-doc t)
+  (merlin-error-after-save nil)
+  :custom-face
+  (merlin-type-face ((t (:inherit 'highlight))))
+  :hook (tuareg-mode . merlin-mode))
+
+(use-package
+  merlin-eldoc
+  :ensure t
+  :custom (merlin-eldoc-type-verbosity 'min)
+  :hook (merlin-mode . merlin-eldoc-setup)
+  :bind (:map merlin-mode-map
+              ("C-c M-n" . merlin-eldoc-jump-to-next-occurrence)
+              ("C-c M-p" . merlin-eldoc-jump-to-prev-occurrence)))
+
+(use-package
+  flycheck-ocaml
+  :ensure t
+  :config (flycheck-ocaml-setup))
+
+(use-package
+  utop
+  :ensure t
+  :diminish utop-minor-mode
+  :config
+  (defun tuareg--after-double-colon () nil)
+  (defun tuareg--skip-double-colon () nil)
+  :custom (utop-command "opam exec -- utop -emacs")
+  :hook (tuareg-mode . utop-minor-mode))
+
+(use-package
+  dune
+  :ensure t
+  :hook (dune-mode . indent-on-save-mode))
+
 ;; python
 
 (use-package
@@ -407,9 +469,6 @@
 (reformatter-define ruby-format
   :program "rubocopfmt"
   :args (list (my/project-buffer-file-relative-name)))
-
-(defun my/project-buffer-file-relative-name ()
-  (file-relative-name buffer-file-name (projectile-project-root)))
 
 (use-package
   ruby-mode
