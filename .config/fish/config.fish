@@ -16,11 +16,11 @@ if status is-login
 
     source "$HOME"/.opam/opam-init/init.fish
 
-    set -x PATH "$HOME"/bin (npm --global bin) $PATH
+    set -x PATH "$HOME"/bin "$HOME"/.npm/bin $PATH
 
     set -x EDITOR vi
     set -x LESSHISTFILE /dev/null
-    set -x NODE_PATH (npm --global root)
+    set -x NODE_PATH "$HOME"/.npm/lib/node_modules
 
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
         exec startx
