@@ -278,6 +278,7 @@
   projectile
   :ensure t
   :diminish
+  :commands projectile-project-root
   :config (projectile-mode 1)
   :custom (projectile-completion-system 'ivy)
   :bind-keymap ("C-c p" . projectile-command-map))
@@ -486,28 +487,18 @@
             "gs" 'robe-start)
   :hook (ruby-mode . robe-mode))
 
-(defun company-ruby (command &rest args)
-  (when (my-robe-mode-active?)
-    (apply 'company-dabbrev-code command args)))
-
 (defun my-robe-toggle (command &rest args)
-  (if (my-robe-mode-active?)
-      (unless robe-mode (robe-mode 1))
-    (if robe-mode (robe-mode 0))))
-
-(defun my-robe-mode-active? ()
-  (or (equal major-mode 'ruby-mode)
-      (and (equal major-mode 'web-mode)
-           (string= (web-mode-language-at-pos) "erb"))))
+  (if (equal major-mode 'web-mode)
+      (if (string= (web-mode-language-at-pos) "erb")
+          (unless robe-mode (robe-mode 1))
+        (if robe-mode (robe-mode 0)))))
 
 (use-package
   company-robe
   :after robe
   :config
   (push 'company-robe company-backends)
-  (push 'company-ruby company-backends)
-  (advice-add 'company-robe
-              :before #'my-robe-toggle))
+  (advice-add 'company-robe :before #'my-robe-toggle))
 
 ;; scheme
 
