@@ -59,24 +59,24 @@
   ""
   :group 'placeholder)
 
-(defun my/whitespace-hook ()
+(defun my-whitespace-hook ()
   (add-hook 'before-save-hook 'whitespace-cleanup nil t))
 
-(add-hook 'text-mode-hook 'my/whitespace-hook)
-(add-hook 'prog-mode-hook 'my/whitespace-hook)
-(add-hook 'conf-mode-hook 'my/whitespace-hook)
+(add-hook 'text-mode-hook 'my-whitespace-hook)
+(add-hook 'prog-mode-hook 'my-whitespace-hook)
+(add-hook 'conf-mode-hook 'my-whitespace-hook)
 
 (define-minor-mode indent-on-save-mode ""
   :lighter nil
   (if indent-on-save-mode
-      (add-hook 'before-save-hook 'my/indent-buffer nil t)
-    (remove-hook 'before-save-hook 'my/indent-buffer t)))
+      (add-hook 'before-save-hook 'my-indent-buffer nil t)
+    (remove-hook 'before-save-hook 'my-indent-buffer t)))
 
-(defun my/indent-buffer ()
+(defun my-indent-buffer ()
   (save-excursion (indent-region (point-min)
                                  (point-max))))
 
-(defun my/project-buffer-file-relative-name ()
+(defun my-project-buffer-file-relative-name ()
   (file-relative-name buffer-file-name (projectile-project-root)))
 
 (bind-key "C-c a" 'align-regexp)
@@ -101,13 +101,13 @@
   (ispell-program-name "aspell")
   :hook ((text-mode prog-mode conf-mode) . flyspell-mode))
 
-(defun my/colourise-compilation ()
+(defun my-colourise-compilation ()
   (ansi-color-apply-on-region compilation-filter-start
                               (point)))
 
 (use-package
   ansi-color
-  :hook (compilation-filter . my/colourise-compilation))
+  :hook (compilation-filter . my-colourise-compilation))
 
 (use-package
   eldoc
@@ -135,7 +135,7 @@
   diminish
   :ensure t)
 
-(defun my/prefix ()
+(defun my-prefix ()
   (interactive)
   (setq unread-command-events (listify-key-sequence (kbd "C-c"))))
 
@@ -145,7 +145,7 @@
   :diminish undo-tree-mode
   :init (evil-mode 1)
   :config
-  (evil-define-key '(normal visual) global-map (kbd "SPC") 'my/prefix)
+  (evil-define-key '(normal visual) global-map (kbd "SPC") 'my-prefix)
   :custom
   (evil-cross-lines t)
   (evil-default-state "emacs")
@@ -172,7 +172,7 @@
   :ensure t
   :bind ("C-c SPC" . avy-goto-char-timer))
 
-(defun my/ivy-setup ()
+(defun my-ivy-setup ()
   (ivy-mode 1)
   (advice-add 'ivy--minibuffer-setup
               :after (lambda ()
@@ -186,7 +186,7 @@
   :ensure t
   :demand t
   :diminish ivy-mode
-  :config (my/ivy-setup)
+  :config (my-ivy-setup)
   :bind
   ("C-s" . swiper)
   ("C-M-s" . swiper-thing-at-point)
@@ -228,7 +228,7 @@
   :custom (dumb-jump-selector 'ivy)
   :config (dumb-jump-mode 1))
 
-(defvar my/flycheck-buffer
+(defvar my-flycheck-buffer
   '("flycheck errors"
     (display-buffer-reuse-window display-buffer-in-side-window)
     (window-height . 0.2)))
@@ -238,15 +238,15 @@
   :ensure t
   :config
   (global-flycheck-mode)
-  (add-to-list 'display-buffer-alist my/flycheck-buffer))
+  (add-to-list 'display-buffer-alist my-flycheck-buffer))
 
-(defun my/flycheck-icons (info warnings errors)
+(defun my-flycheck-icons (info warnings errors)
   (list
-   (my/flycheck-icon "info" info)
-   (my/flycheck-icon "warning" warnings)
-   (my/flycheck-icon "error" errors)))
+   (my-flycheck-icon "info" info)
+   (my-flycheck-icon "warning" warnings)
+   (my-flycheck-icon "error" errors)))
 
-(defun my/flycheck-icon (type count)
+(defun my-flycheck-icon (type count)
   (let ((icon (intern-soft (concat "flycheck-indicator-icon-" type)))
         (face (intern-soft (concat "flycheck-indicator-" type))))
     (when (> count 0)
@@ -257,7 +257,7 @@
   flycheck-indicator
   :ensure t
   :config (advice-add 'flycheck-indicator--icons-formatter
-                      :override #'my/flycheck-icons)
+                      :override #'my-flycheck-icons)
   :hook (flycheck-mode . flycheck-indicator-mode))
 
 (use-package
@@ -378,7 +378,7 @@
 (reformatter-define ocaml-format
   :program "ocamlformat"
   :args (list "--enable-outside-detected-project"
-              "--name" (my/project-buffer-file-relative-name)
+              "--name" (my-project-buffer-file-relative-name)
               "-"))
 
 (use-package
@@ -469,7 +469,7 @@
 
 (reformatter-define ruby-format
   :program "rubocopfmt"
-  :args (list (my/project-buffer-file-relative-name)))
+  :args (list (my-project-buffer-file-relative-name)))
 
 (use-package
   ruby-mode
@@ -487,15 +487,15 @@
   :hook (ruby-mode . robe-mode))
 
 (defun company-ruby (command &rest args)
-  (when (my/robe-mode-active?)
+  (when (my-robe-mode-active?)
     (apply 'company-dabbrev-code command args)))
 
-(defun my/robe-toggle (command &rest args)
-  (if (my/robe-mode-active?)
+(defun my-robe-toggle (command &rest args)
+  (if (my-robe-mode-active?)
       (unless robe-mode (robe-mode 1))
     (if robe-mode (robe-mode 0))))
 
-(defun my/robe-mode-active? ()
+(defun my-robe-mode-active? ()
   (or (equal major-mode 'ruby-mode)
       (and (equal major-mode 'web-mode)
            (string= (web-mode-language-at-pos) "erb"))))
@@ -507,7 +507,7 @@
   (push 'company-robe company-backends)
   (push 'company-ruby company-backends)
   (advice-add 'company-robe
-              :before #'my/robe-toggle))
+              :before #'my-robe-toggle))
 
 ;; scheme
 
@@ -524,7 +524,7 @@
   sh-script
   :hook (sh-mode . shell-format-on-save-mode))
 
-(defvar my/shell-backend
+(defvar my-shell-backend
   '(:separate company-fish-shell
               company-shell
               company-shell-env
@@ -537,7 +537,7 @@
   :ensure t
   :after (:any sh-script
                fish-mode)
-  :config (push my/shell-backend company-backends)
+  :config (push my-shell-backend company-backends)
   :custom (company-shell-clean-manpage t))
 
 ;; web
@@ -557,7 +557,7 @@
   :hook (web-mode . indent-on-save-mode)
   :bind ("C-c w" . web-mode))
 
-(defvar my/web-backend
+(defvar my-web-backend
   '(:separate company-web-html
               :with
               company-files
@@ -567,7 +567,7 @@
   company-web
   :ensure t
   :after web-mode
-  :config (push my/web-backend company-backends))
+  :config (push my-web-backend company-backends))
 
 (use-package
   css-mode
