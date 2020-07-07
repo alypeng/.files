@@ -476,15 +476,36 @@
   ruby-mode
   :hook (ruby-mode . ruby-format-on-save-mode))
 
+(defun my-robe-setup ()
+  (evil-define-key 'normal ruby-mode-map
+    "gd" 'robe-jump
+    "gh" 'robe-doc
+    "gr" 'robe-rails-refresh
+    "gs" 'robe-start)
+  (advice-add 'inf-ruby-console-run :filter-args #'my-robe-console-command)
+  (advice-add 'robe-find-file :filter-args #'my-robe-path-mapping))
+
+(defvar my-robe-docker-cwd nil)
+
+(defun my-robe-console-command (args)
+  (if my-robe-docker-cwd
+      (cons (concat "robe "
+                    (car args))
+            (cdr args))
+    args))
+
+(defun my-robe-path-mapping (args)
+  (if my-robe-docker-cwd
+      (cons (concat (projectile-project-root)
+                    (file-relative-name (car args) my-robe-docker-cwd))
+            (cdr args))
+    args))
+
 (use-package
   robe
   :ensure t
   :diminish
-  :config (evil-define-key 'normal robe-mode-map
-            "gd" 'robe-jump
-            "gh" 'robe-doc
-            "gr" 'robe-rails-refresh
-            "gs" 'robe-start)
+  :config (my-robe-setup)
   :hook (ruby-mode . robe-mode))
 
 (defun my-robe-toggle (command &rest args)

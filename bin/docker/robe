@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+docker-compose run --rm -p 7063:7063 \
+    -v "$(find ~/.emacs.d/elpa/robe-* -name lib -type d | tail -n 1)":/robe \
+    web bash -c "$*"
