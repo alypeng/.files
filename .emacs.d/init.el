@@ -560,7 +560,6 @@
   :mode ("\\.html?\\'" "\\.erb\\'")
   :config (flycheck-add-mode 'html-tidy 'web-mode)
   :custom
-  (flycheck-tidyrc "~/.tidyrc.txt")
   (web-mode-code-indent-offset 2)
   (web-mode-css-indent-offset 2)
   (web-mode-markup-indent-offset 2)

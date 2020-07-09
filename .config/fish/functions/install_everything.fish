@@ -61,7 +61,7 @@ function install_everything
     dotfile .emacs.d
     dotfile .ocamlinit
     dotfile .stylelintrc.json
-    dotfile .tidyrc.txt
+    dotfile .tidyrc
     dotfile bin
 
     fish_update_completions
