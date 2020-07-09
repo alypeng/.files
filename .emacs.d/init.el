@@ -79,6 +79,9 @@
 (defun my-project-buffer-file-relative-name ()
   (file-relative-name buffer-file-name (projectile-project-root)))
 
+(bind-key "C-c l" 'display-line-numbers-mode)
+(bind-key "C-c v" 'visual-line-mode)
+
 (bind-key "C-c a" 'align-regexp)
 (bind-key "C-c t" 'sort-lines)
 
@@ -408,10 +411,7 @@
   merlin-eldoc
   :ensure t
   :custom (merlin-eldoc-type-verbosity 'min)
-  :hook (merlin-mode . merlin-eldoc-setup)
-  :bind (:map merlin-mode-map
-              ("C-c M-n" . merlin-eldoc-jump-to-next-occurrence)
-              ("C-c M-p" . merlin-eldoc-jump-to-prev-occurrence)))
+  :hook (merlin-mode . merlin-eldoc-setup))
 
 (use-package
   flycheck-ocaml
@@ -566,8 +566,7 @@
   (web-mode-markup-indent-offset 2)
   (web-mode-script-padding 2)
   (web-mode-style-padding 2)
-  :hook (web-mode . indent-on-save-mode)
-  :bind ("C-c w" . web-mode))
+  :hook (web-mode . indent-on-save-mode))
 
 (defvar my-web-backend
   '(:separate company-web-html
