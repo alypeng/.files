@@ -228,8 +228,7 @@
 (use-package
   dumb-jump
   :ensure t
-  :custom (dumb-jump-selector 'ivy)
-  :config (dumb-jump-mode 1))
+  :config (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
 (defvar my-flycheck-buffer
   '("flycheck errors"
@@ -390,12 +389,14 @@
   :ensure t
   :hook (tuareg-mode . ocaml-format-on-save-mode))
 
+(defun my-merlin-xref-hook ()
+  (add-hook 'xref-backend-functions #'merlin-xref-backend nil t))
+
 (use-package
   merlin
   :ensure t
   :diminish
   :config
-  (push 'merlin-xref-backend xref-backend-functions)
   (evil-define-key 'normal merlin-mode-map
     "gh" 'merlin-document
     "gr" 'merlin-occurrences
@@ -405,7 +406,9 @@
   (merlin-error-after-save nil)
   :custom-face
   (merlin-type-face ((t (:inherit 'highlight))))
-  :hook (tuareg-mode . merlin-mode))
+  :hook
+  (tuareg-mode . merlin-mode)
+  (merlin-mode . my-merlin-xref-hook))
 
 (use-package
   merlin-eldoc
