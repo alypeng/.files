@@ -505,21 +505,9 @@
   robe
   :ensure t
   :diminish
+  :init (push 'company-robe company-backends)
   :config (my-robe-setup)
   :hook (ruby-mode . robe-mode))
-
-(defun my-robe-toggle (command &rest args)
-  (if (equal major-mode 'web-mode)
-      (if (string= (web-mode-language-at-pos) "erb")
-          (unless robe-mode (robe-mode 1))
-        (if robe-mode (robe-mode 0)))))
-
-(use-package
-  company-robe
-  :after robe
-  :config
-  (push 'company-robe company-backends)
-  (advice-add 'company-robe :before #'my-robe-toggle))
 
 ;; scheme
 
@@ -554,6 +542,11 @@
 
 ;; web
 
+(defun my-auto-enable-minor-mode (mode extension)
+  (when (string= (file-name-extension buffer-file-name)
+                 extension)
+    (funcall mode 1)))
+
 (use-package
   web-mode
   :ensure t
@@ -565,7 +558,10 @@
   (web-mode-markup-indent-offset 2)
   (web-mode-script-padding 2)
   (web-mode-style-padding 2)
-  :hook (web-mode . indent-on-save-mode))
+  :hook
+  (web-mode . indent-on-save-mode)
+  (web-mode . (lambda ()
+                (my-auto-enable-minor-mode 'robe-mode "erb"))))
 
 (defvar my-web-backend
   '(:separate company-web-html
