@@ -438,15 +438,20 @@
 
 ;; python
 
+(defun my-anaconda-goto-def (&rest _)
+  (when anaconda-mode
+    (progn (call-interactively 'anaconda-mode-find-definitions) t)))
+
 (use-package
   anaconda-mode
   :ensure t
   :diminish
-  :config (evil-define-key 'normal anaconda-mode-map
-            "gd" 'anaconda-mode-find-definitions
-            "gh" 'anaconda-mode-show-doc
-            "gr" 'anaconda-mode-find-references
-            "gs" 'anaconda-mode-find-assignments)
+  :config
+  (push 'my-anaconda-goto-def evil-goto-definition-functions)
+  (evil-define-key 'normal anaconda-mode-map
+    "gh" 'anaconda-mode-show-doc
+    "gr" 'anaconda-mode-find-references
+    "gs" 'anaconda-mode-find-assignments)
   :hook
   (python-mode . anaconda-mode)
   (python-mode . anaconda-eldoc-mode))
@@ -480,13 +485,17 @@
   :hook (ruby-mode . ruby-format-on-save-mode))
 
 (defun my-robe-setup ()
+  (push 'my-robe-goto-def evil-goto-definition-functions)
   (evil-define-key 'normal ruby-mode-map
-    "gd" 'robe-jump
     "gh" 'robe-doc
     "gr" 'robe-rails-refresh
     "gs" 'robe-start)
   (advice-add 'inf-ruby-console-run :filter-args #'my-robe-console-command)
   (advice-add 'robe-find-file :filter-args #'my-robe-path-mapping))
+
+(defun my-robe-goto-def (&rest _)
+  (when (and robe-mode (robe-running-p))
+    (progn (call-interactively 'robe-jump) t)))
 
 (defvar my-robe-docker-cwd nil)
 
