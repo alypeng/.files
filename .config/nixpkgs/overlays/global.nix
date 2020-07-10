@@ -29,7 +29,7 @@ let
   myLinuxPackages = with self; [ cask mitscheme strace ];
 
   myPythonPackages =
-    super.python37.withPackages (ps: with ps; [ black flake8 setuptools ]);
+    super.python38.withPackages (ps: with ps; [ black flake8 setuptools ]);
 
   myRubyPackages = super.ruby.withPackages (ps: with ps; [ pry rubocop ]);
 in {
