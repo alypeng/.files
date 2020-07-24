@@ -98,8 +98,6 @@
   flyspell
   :diminish
   :custom
-  (flyspell-issue-message-flag nil)
-  (flyspell-issue-welcome-flag nil)
   (ispell-extra-args '("--run-together"))
   (ispell-program-name "aspell")
   :hook ((text-mode prog-mode conf-mode) . flyspell-mode))
