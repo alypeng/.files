@@ -12,8 +12,7 @@ function upgrade_everything
     end
 
     nix-channel --update
-
-    nix-env --install --attr nixpkgs.myPackages
+    nix-env --upgrade
 
     nix-env --delete-generations 14d
     nix-store --gc
