@@ -20,6 +20,7 @@ let
     ocamlformat
     opam
     pipenv
+    postgresql
     proselint
     ripgrep
     shellcheck
