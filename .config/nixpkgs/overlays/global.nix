@@ -27,6 +27,7 @@ let
     ruby
     shellcheck
     shfmt
+    sqlint
   ];
 
   myLinuxPackages = with self; [ cask mitscheme strace ];
