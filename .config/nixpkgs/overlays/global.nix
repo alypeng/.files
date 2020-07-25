@@ -13,7 +13,6 @@ let
     hadolint
     html-tidy
     myPythonPackages
-    myRubyPackages
     nixfmt
     nodePackages.prettier
     nodejs
@@ -22,7 +21,10 @@ let
     pipenv
     postgresql
     proselint
+    pry
     ripgrep
+    rubocop
+    ruby
     shellcheck
     shfmt
   ];
@@ -31,8 +33,6 @@ let
 
   myPythonPackages =
     super.python38.withPackages (ps: with ps; [ black flake8 setuptools ]);
-
-  myRubyPackages = super.ruby.withPackages (ps: with ps; [ pry rubocop ]);
 in {
   myPackages = super.buildEnv {
     name = "my-packages";
