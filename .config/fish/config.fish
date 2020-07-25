@@ -20,6 +20,8 @@ if status is-login
 
     set -x EDITOR vi
     set -x LESSHISTFILE /dev/null
+
+    set -x BUNDLE_PATH vendor/bundle
     set -x NODE_PATH "$HOME"/.npm/lib/node_modules
 
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
