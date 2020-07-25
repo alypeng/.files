@@ -32,8 +32,8 @@ let
 
   myLinuxPackages = with self; [ cask mitscheme strace ];
 
-  myPythonPackages =
-    super.python38.withPackages (ps: with ps; [ black flake8 setuptools ]);
+  myPythonPackages = super.python38.withPackages
+    (ps: with ps; [ black flake8 setuptools sqlparse ]);
 in {
   myPackages = super.buildEnv {
     name = "my-packages";
