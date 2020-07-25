@@ -103,8 +103,9 @@
   :hook ((text-mode prog-mode conf-mode) . flyspell-mode))
 
 (defun my-colourise-compilation ()
-  (ansi-color-apply-on-region compilation-filter-start
-                              (point)))
+  (unless (derived-mode-p 'rg-mode)
+    (ansi-color-apply-on-region compilation-filter-start
+                                (point))))
 
 (use-package
   ansi-color
