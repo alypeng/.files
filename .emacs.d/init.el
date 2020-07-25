@@ -550,6 +550,18 @@
   :config (push my-shell-backend company-backends)
   :custom (company-shell-clean-manpage t))
 
+;; sql
+
+(reformatter-define sql-format
+  :program "sqlformat"
+  :args (list "--keywords" "upper"
+              "--reindent"
+              "-"))
+
+(use-package
+  sql
+  :hook (sql-mode . sql-format-on-save-mode))
+
 ;; web
 
 (defun my-auto-enable-minor-mode (mode extension)
