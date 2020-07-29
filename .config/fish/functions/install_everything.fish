@@ -18,8 +18,10 @@ function install_everything
             emacs \
             ffmpeg-libs \
             firefox \
+            gdouros-symbola-fonts \
             i3 \
-            redshift
+            redshift \
+            rxvt-unicode-ml
 
         sudo chown -R $USER:$USER ~/.cache
 

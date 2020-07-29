@@ -36,7 +36,9 @@
 *foreground: base00
 
 Xft.dpi: 96
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
 
-URxvt.font: xft:Hack:medium:size=13
-URxvt.letterSpace: -1
+URxvt.font: xft:Hack:medium:size=13, xft:Symbola
+URxvt.letterSpace: -2
 URxvt.scrollBar: 0
