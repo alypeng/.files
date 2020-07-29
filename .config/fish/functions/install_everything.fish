@@ -57,7 +57,6 @@ function install_everything
     dotconfig proselint
 
     dotfile .aspell.conf
-    dotfile .bundle
     dotfile .emacs.d
     dotfile .ocamlinit
     dotfile .stylelintrc.json
