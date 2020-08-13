@@ -7,8 +7,6 @@ if status is-login
 
         case Linux
             set -x PATH /usr/local/bin /usr/bin /usr/local/sbin /usr/sbin
-
-            set -x TERMINAL urxvt-ml
     end
 
     set fish_function_path $fish_function_path \

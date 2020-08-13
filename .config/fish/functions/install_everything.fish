@@ -15,13 +15,14 @@ function install_everything
         sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-(rpm -E %fedora).noarch.rpm
         sudo dnf install \
             alsa-plugins-pulseaudio \
+            dnf-plugin-system-upgrade \
             emacs \
             ffmpeg-libs \
             firefox \
             gdouros-symbola-fonts \
             i3 \
             redshift \
-            rxvt-unicode-ml
+            rxvt-unicode
 
         sudo chown -R $USER:$USER ~/.cache
 
