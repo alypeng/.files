@@ -36,6 +36,7 @@
 *foreground: base00
 
 Xft.dpi: 96
+Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
 
