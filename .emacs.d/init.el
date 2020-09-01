@@ -248,11 +248,13 @@
    (my-flycheck-icon "error" errors)))
 
 (defun my-flycheck-icon (type count)
-  (let ((icon (intern-soft (concat "flycheck-indicator-icon-" type)))
-        (face (intern-soft (concat "flycheck-indicator-" type))))
-    (when (> count 0)
+  (cond
+   ((> count 0)
+    (let ((icon (intern-soft (concat "flycheck-indicator-icon-" type)))
+          (face (intern-soft (concat "flycheck-indicator-" type))))
       (propertize (format " %c%s" (symbol-value icon) count)
-                  'font-lock-face face))))
+                  'font-lock-face face)))
+   (t "")))
 
 (use-package
   flycheck-indicator
