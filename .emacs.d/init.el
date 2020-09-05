@@ -147,14 +147,15 @@
   :diminish undo-tree-mode
   :init (evil-mode 1)
   :config
-  (evil-define-key '(normal visual) global-map (kbd "SPC") 'my-prefix)
+  (evil-global-set-key 'normal (kbd "SPC") 'my-prefix)
+  (evil-global-set-key 'visual (kbd "SPC") 'my-prefix)
+  (evil-global-set-key 'normal (kbd "M-.") nil)
   :custom
   (evil-cross-lines t)
   (evil-default-state "emacs")
   (evil-normal-state-modes '(text-mode prog-mode conf-mode))
   (evil-want-C-u-delete t)
-  (evil-want-C-u-scroll t)
-  :bind ("C-=" . universal-argument))
+  (evil-want-C-u-scroll t))
 
 (use-package
   which-key
@@ -191,11 +192,9 @@
   :config (my-ivy-setup)
   :bind
   ("C-s" . swiper)
-  ("C-M-s" . swiper-thing-at-point)
   ("M-x" . counsel-M-x)
   ("C-x b" . counsel-switch-buffer)
   ("C-x C-f" . counsel-find-file)
-  ("C-c r" . ivy-resume)
   ("<f1> f" . counsel-describe-function)
   ("<f1> v" . counsel-describe-variable)
   ("<f2> u" . counsel-unicode-char)
@@ -400,8 +399,7 @@
   :config
   (evil-define-key 'normal merlin-mode-map
     "gh" 'merlin-document
-    "gr" 'merlin-occurrences
-    "gs" 'merlin-jump)
+    "gr" 'merlin-occurrences)
   :custom
   (merlin-completion-with-doc t)
   (merlin-error-after-save nil)
@@ -439,20 +437,14 @@
 
 ;; python
 
-(defun my-anaconda-goto-def (&rest _)
-  (when anaconda-mode
-    (progn (call-interactively 'anaconda-mode-find-definitions) t)))
-
 (use-package
   anaconda-mode
   :ensure t
   :diminish
   :config
-  (push 'my-anaconda-goto-def evil-goto-definition-functions)
   (evil-define-key 'normal anaconda-mode-map
     "gh" 'anaconda-mode-show-doc
-    "gr" 'anaconda-mode-find-references
-    "gs" 'anaconda-mode-find-assignments)
+    "gr" 'anaconda-mode-find-references)
   :hook
   (python-mode . anaconda-mode)
   (python-mode . anaconda-eldoc-mode))
@@ -486,17 +478,11 @@
   :hook (ruby-mode . ruby-format-on-save-mode))
 
 (defun my-robe-setup ()
-  (push 'my-robe-goto-def evil-goto-definition-functions)
   (evil-define-key 'normal ruby-mode-map
     "gh" 'robe-doc
-    "gr" 'robe-rails-refresh
-    "gs" 'robe-start)
+    "gr" 'robe-start)
   (advice-add 'inf-ruby-console-run :filter-args #'my-robe-console-command)
   (advice-add 'robe-find-file :filter-args #'my-robe-path-mapping))
-
-(defun my-robe-goto-def (&rest _)
-  (when (and robe-mode (robe-running-p))
-    (progn (call-interactively 'robe-jump) t)))
 
 (defvar my-robe-docker-cwd nil)
 
