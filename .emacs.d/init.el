@@ -577,8 +577,7 @@
 (defvar my-web-backend
   '(:separate company-web-html
               :with
-              company-files
-              company-dabbrev))
+              company-dabbrev-code))
 
 (use-package
   company-web
