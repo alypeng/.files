@@ -1,5 +1,22 @@
 #!/usr/bin/env bash
 
+find_up() {
+    while true; do
+        if [[ -f $1 ]]; then
+            echo "$PWD"
+            return 0
+        fi
+
+        if [[ $PWD == / ]] || [[ $PWD == // ]]; then
+            return 1
+        fi
+
+        cd ..
+    done
+}
+
+root=$(find_up Gemfile)
+args=${*//$root//app}
+
 docker-compose run --rm --no-deps \
-    -v "$PWD":"$PWD" \
-    web bash -c "bundle exec rubocop $*" || true
+    web bash -c "bundle exec rubocop $args" | sed "s|^/app|$root|"
