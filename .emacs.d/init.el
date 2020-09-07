@@ -76,9 +76,6 @@
   (save-excursion (indent-region (point-min)
                                  (point-max))))
 
-(defun my-project-buffer-file-relative-name ()
-  (file-relative-name buffer-file-name (projectile-project-root)))
-
 (bind-key "C-c l" 'display-line-numbers-mode)
 (bind-key "C-c v" 'visual-line-mode)
 
@@ -380,8 +377,7 @@
 
 (reformatter-define ocaml-format
   :program "ocamlformat"
-  :args (list "--enable-outside-detected-project"
-              "--name" (my-project-buffer-file-relative-name)
+  :args (list "--name" buffer-file-name
               "-"))
 
 (use-package
@@ -471,7 +467,7 @@
 
 (reformatter-define ruby-format
   :program "rubocopfmt"
-  :args (list (my-project-buffer-file-relative-name)))
+  :args (list buffer-file-name))
 
 (use-package
   ruby-mode
