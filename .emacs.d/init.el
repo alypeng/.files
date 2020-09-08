@@ -223,7 +223,8 @@
 (use-package
   dumb-jump
   :ensure t
-  :config (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+  :config (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  :custom (dumb-jump-force-searcher 'rg))
 
 (defvar my-flycheck-buffer
   '("flycheck errors"
