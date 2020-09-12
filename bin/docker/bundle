@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-docker-compose run --rm web bash -c "bundle $*"
+if [ "$*" == "exec rails console -e development" ]; then
+    docker-compose run --rm -p 7063:7063 \
+        -v "$(find ~/.emacs.d/elpa/robe-* -name lib -type d | tail -n 1)":/robe \
+        web bash -c "bundle $*"
+else
+    docker-compose run --rm web bash -c "bundle $*"
+fi
