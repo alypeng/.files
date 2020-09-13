@@ -44,3 +44,4 @@ URxvt.font: xft:Hack:medium:size=13, xft:Symbola
 URxvt.letterSpace: -2
 URxvt.saveLines: 65535
 URxvt.scrollBar: 0
+URxvt.termName: xterm-256color
