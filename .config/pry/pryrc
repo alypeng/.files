@@ -1,0 +1,2 @@
+Pry.config.color = true
+Pry.config.history_save = false

@@ -58,6 +58,7 @@ function install_everything
 
     dotconfig git
     dotconfig proselint
+    dotconfig pry
     dotconfig utop
 
     dotfile .aspell.conf
