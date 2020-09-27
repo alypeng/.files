@@ -18,7 +18,6 @@ let
     nodejs
     ocamlformat
     opam
-    pipenv
     postgresql
     proselint
     pry

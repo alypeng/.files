@@ -458,12 +458,6 @@
   :diminish
   :hook (python-mode . blacken-mode))
 
-(use-package
-  pipenv
-  :ensure t
-  :diminish
-  :hook (python-mode . pipenv-mode))
-
 ;; ruby
 
 (reformatter-define ruby-format
