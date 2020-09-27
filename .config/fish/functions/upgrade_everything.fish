@@ -11,8 +11,7 @@ function upgrade_everything
         sudo dnf --refresh autoremove
     end
 
-    nix-channel --update
-    nix-env --upgrade
+    nix-env --install --attr nixpkgs.my-base-env
 
     nix-env --delete-generations 14d
     nix-store --gc

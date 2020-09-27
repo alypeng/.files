@@ -34,4 +34,4 @@ curl -fLsS https://nixos.org/nix/install | sh
 
 # shellcheck disable=SC1090
 source "$HOME"/.nix-profile/etc/profile.d/nix.sh
-nix-env --install --attr nixpkgs.myPackages
+nix-env --install --attr nixpkgs.my-base-env

@@ -398,6 +398,7 @@
     "gh" 'merlin-document
     "gr" 'merlin-occurrences)
   :custom
+  (merlin-command "ocamlmerlin")
   (merlin-completion-with-doc t)
   (merlin-error-after-save nil)
   :custom-face
@@ -424,7 +425,6 @@
   :config
   (defun tuareg--after-double-colon () nil)
   (defun tuareg--skip-double-colon () nil)
-  :custom (utop-command "opam exec -- utop -emacs")
   :hook (tuareg-mode . utop-minor-mode))
 
 (use-package

@@ -1,7 +1,15 @@
 self: super:
 
+with import (super.fetchFromGitHub {
+  owner = "nixos";
+  repo = "nixpkgs";
+  rev = "72b9660dc18ba347f7cd41a9504fc181a6d87dc3";
+  sha256 = "1cqgpw263bz261bgz34j6hiawi4hi6smwp6981yz375fx0g6kmss";
+}) { };
 let
-  myBasePackages = with self; [
+  sqlparse = with python3; pkgs.toPythonApplication pkgs.sqlparse;
+
+  my-base-packages = [
     aspell
     aspellDicts.en
     direnv
@@ -10,31 +18,48 @@ let
     hack-font
     hadolint
     html-tidy
-    myPythonPackages
     nixfmt
     nodePackages.prettier
     nodejs
-    ocamlformat
     postgresql
     proselint
-    pry
     ripgrep
-    rubocop
-    ruby
     shellcheck
     shfmt
     sqlint
+    sqlparse
   ];
 
-  myLinuxPackages = with self; [ cask mitscheme strace ];
+  my-ocaml-packages = [
+    ocaml
+    ocamlPackages.core
+    ocamlPackages.dune_2
+    ocamlPackages.findlib
+    ocamlPackages.merlin
+    ocamlPackages.utop
+    ocamlformat
+  ];
 
-  myPythonPackages = super.python38.withPackages
-    (ps: with ps; [ black flake8 setuptools sqlparse ]);
+  my-python-packages =
+    [ (python3.withPackages (ps: with ps; [ black flake8 setuptools ])) ];
+
+  my-ruby-packages = [
+    ruby
+    rubyPackages.pry
+    rubyPackages.pry-doc
+    rubyPackages.rspec
+    rubyPackages.rubocop
+  ];
+
+  my-scheme-packages = [ mitscheme ];
 in {
-  myPackages = super.buildEnv {
-    name = "my-packages";
-    paths = myBasePackages
-      ++ (if super.stdenv.isLinux then myLinuxPackages else [ ]);
+  my-base-env = super.buildEnv {
+    name = "my-base-env";
+    paths = my-base-packages ++ my-python-packages;
     pathsToLink = [ "/bin" "/lib" "/share" ];
   };
+
+  inherit my-ocaml-packages;
+  inherit my-ruby-packages;
+  inherit my-scheme-packages;
 }

@@ -22,7 +22,8 @@ function install_everything
             gdouros-symbola-fonts \
             i3 \
             redshift \
-            rxvt-unicode
+            rxvt-unicode \
+            strace
 
         sudo chown -R $USER:$USER ~/.cache
 
@@ -37,7 +38,7 @@ function install_everything
         dotfile .xinitrc
     end
 
-    nix-env --install --attr nixpkgs.myPackages
+    nix-env --install --attr nixpkgs.my-base-env
 
     dotfile .npmrc
 
@@ -58,7 +59,6 @@ function install_everything
     dotfile .emacs.d
     dotfile .stylelintrc.json
     dotfile .tidyrc
-    dotfile bin
 
     fish_update_completions
 end
