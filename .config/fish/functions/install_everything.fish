@@ -42,8 +42,7 @@ function install_everything
 
     dotfile .npmrc
 
-    npm install -g \
-        markdownlint-cli \
+    npm install --global \
         stylelint \
         stylelint-config-recommended-scss \
         stylelint-scss

@@ -18,6 +18,7 @@ let
     hack-font
     hadolint
     html-tidy
+    mdl
     nixfmt
     nodePackages.prettier
     nodejs

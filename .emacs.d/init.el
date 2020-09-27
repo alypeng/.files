@@ -356,7 +356,7 @@
   markdown-mode
   :ensure t
   :mode ("README\\.md\\'" . gfm-mode)
-  :config (flycheck-add-next-checker 'markdown-markdownlint-cli 'proselint)
+  :config (flycheck-add-next-checker 'markdown-mdl 'proselint)
   :hook (markdown-mode . prettier-js-mode))
 
 (use-package
