@@ -4,11 +4,9 @@ let
   myBasePackages = with self; [
     aspell
     aspellDicts.en
-    bzip2
     direnv
     fish-foreign-env
     git
-    gnum4
     hack-font
     hadolint
     html-tidy
@@ -17,7 +15,6 @@ let
     nodePackages.prettier
     nodejs
     ocamlformat
-    opam
     postgresql
     proselint
     pry

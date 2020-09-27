@@ -14,8 +14,6 @@ if status is-login
 
     fenv source "$HOME"/.nix-profile/etc/profile.d/nix.sh
 
-    source "$HOME"/.opam/opam-init/init.fish
-
     set -x PATH "$HOME"/bin "$HOME"/.npm/bin $PATH
 
     set -x EDITOR vi

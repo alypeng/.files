@@ -47,13 +47,6 @@ function install_everything
         stylelint-config-recommended-scss \
         stylelint-scss
 
-    opam init --no-setup
-    opam install \
-        core \
-        dune \
-        merlin \
-        utop
-
     mkdir -p ~/projects
 
     dotconfig git
@@ -63,7 +56,6 @@ function install_everything
 
     dotfile .aspell.conf
     dotfile .emacs.d
-    dotfile .ocamlinit
     dotfile .stylelintrc.json
     dotfile .tidyrc
     dotfile bin

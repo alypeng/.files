@@ -19,8 +19,5 @@ function upgrade_everything
 
     npm upgrade --global
 
-    opam init --no-setup --reinit
-    opam upgrade
-
     fish_update_completions
 end
