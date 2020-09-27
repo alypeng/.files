@@ -49,13 +49,13 @@ function install_everything
 
     mkdir -p ~/projects
 
+    dotconfig emacs
     dotconfig git
     dotconfig proselint
     dotconfig pry
     dotconfig utop
 
     dotfile .aspell.conf
-    dotfile .emacs.d
     dotfile .stylelintrc.json
     dotfile .tidyrc
 

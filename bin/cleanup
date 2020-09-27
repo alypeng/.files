@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-find "$HOME"/.emacs.d/{auto-save*,backup,trash} \
+find "$HOME"/.config/emacs/{auto-save*,backup,trash} \
     -mindepth 1 \
     -not -name ".gitignore" \
     -delete

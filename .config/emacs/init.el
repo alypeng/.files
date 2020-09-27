@@ -48,10 +48,10 @@
 (setq-default tab-width 4)
 (setq-default truncate-lines t)
 
-(setq auto-save-file-name-transforms '((".*"  "~/.emacs.d/auto-save/" t)))
-(setq backup-directory-alist         '(("." . "~/.emacs.d/backup/")))
-(setq custom-file                             "~/.emacs.d/null.el")
-(setq trash-directory                         "~/.emacs.d/trash/")
+(setq auto-save-file-name-transforms '((".*"  "~/.config/emacs/auto-save/" t)))
+(setq backup-directory-alist         '(("." . "~/.config/emacs/backup/")))
+(setq custom-file                             "~/.config/emacs/null.el")
+(setq trash-directory                         "~/.config/emacs/trash/")
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
