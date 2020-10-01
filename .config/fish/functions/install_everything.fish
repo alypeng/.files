@@ -5,8 +5,9 @@ function install_everything
         brew cask install \
             docker \
             emacs \
-            firefox \
-            homebrew/cask-fonts/font-hack
+            firefox
+
+        cp -f ~/.nix-profile/share/fonts/hack/* ~/Library/Fonts
     else
         sudo dnf check-update
 

@@ -3,8 +3,6 @@ function upgrade_everything
         brew update
         brew upgrade
 
-        brew cask upgrade
-
         brew cleanup -s
     else
         sudo dnf --refresh upgrade
