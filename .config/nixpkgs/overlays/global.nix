@@ -7,7 +7,7 @@ with import (super.fetchFromGitHub {
   sha256 = "1cqgpw263bz261bgz34j6hiawi4hi6smwp6981yz375fx0g6kmss";
 }) { };
 let
-  sqlparse = with python3; pkgs.toPythonApplication pkgs.sqlparse;
+  sqlformat = with python3.pkgs; toPythonApplication sqlparse;
 
   my-base-packages = [
     aspell
@@ -27,8 +27,9 @@ let
     ripgrep
     shellcheck
     shfmt
+    sqlformat
     sqlint
-    sqlparse
+    yamllint
   ];
 
   my-ocaml-packages = [
