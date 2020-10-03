@@ -208,11 +208,11 @@
   (company-minimum-prefix-length 2)
   (company-show-numbers t)
   (company-tooltip-align-annotations t)
-  :hook (special-mode . (lambda ()
-                          (company-mode 0)))
   :bind (:map company-mode-map
               ("<tab>" . company-indent-or-complete-common)
-              ("<backtab>" . company-other-backend)))
+              ("<backtab>" . company-other-backend))
+  :hook (special-mode . (lambda ()
+                          (company-mode 0))))
 
 (use-package
   yasnippet
@@ -386,26 +386,23 @@
   :ensure t
   :hook (tuareg-mode . ocaml-format-on-save-mode))
 
-(defun my-merlin-xref-hook ()
-  (add-hook 'xref-backend-functions #'merlin-xref-backend nil t))
-
 (use-package
   merlin
   :ensure t
   :diminish
-  :config
-  (evil-define-key 'normal merlin-mode-map
-    "gh" 'merlin-document
-    "gr" 'merlin-occurrences)
   :custom
   (merlin-command "ocamlmerlin")
   (merlin-completion-with-doc t)
   (merlin-error-after-save nil)
   :custom-face
   (merlin-type-face ((t (:inherit 'highlight))))
+  :bind (:map merlin-mode-map
+              ("M-/" . merlin-document))
   :hook
   (tuareg-mode . merlin-mode)
-  (merlin-mode . my-merlin-xref-hook))
+  (tuareg-mode
+   . (lambda ()
+       (add-hook 'xref-backend-functions #'merlin-xref-backend nil t))))
 
 (use-package
   merlin-eldoc
@@ -438,10 +435,10 @@
   anaconda-mode
   :ensure t
   :diminish
-  :config
-  (evil-define-key 'normal anaconda-mode-map
-    "gh" 'anaconda-mode-show-doc
-    "gr" 'anaconda-mode-find-references)
+  :bind (:map anaconda-mode-map
+              ("M-." . nil)
+              ("M-/" . anaconda-mode-show-doc)
+              ("M-?" . nil))
   :hook
   (python-mode . anaconda-mode)
   (python-mode . anaconda-eldoc-mode))
@@ -473,13 +470,12 @@
   :ensure t
   :diminish
   :init (push 'company-robe company-backends)
-  :config
-  (evil-define-key 'normal ruby-mode-map
-    "gh" 'robe-doc
-    "gr" 'robe-start)
-  (advice-add 'robe-find-file
-              :filter-args #'my-robe-path-mapping)
-  :hook (ruby-mode . robe-mode))
+  :config (advice-add 'robe-find-file
+                      :filter-args #'my-robe-path-mapping)
+  :bind (:map robe-mode-map
+              ("M-/" . robe-doc))
+  :hook
+  (ruby-mode . robe-mode))
 
 (defun my-robe-path-mapping (args)
   (if (bound-and-true-p docker-cwd)
