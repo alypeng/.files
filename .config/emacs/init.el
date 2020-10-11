@@ -100,9 +100,8 @@
   :hook ((text-mode prog-mode conf-mode) . flyspell-mode))
 
 (defun my-colourise-compilation ()
-  (unless (derived-mode-p 'rg-mode)
-    (ansi-color-apply-on-region compilation-filter-start
-                                (point))))
+  (ansi-color-apply-on-region compilation-filter-start
+                              (point)))
 
 (use-package
   ansi-color
@@ -141,7 +140,6 @@
 (use-package
   evil
   :ensure t
-  :diminish undo-tree-mode
   :init (evil-mode 1)
   :config
   (evil-global-set-key 'normal (kbd "SPC") 'my-prefix)
@@ -151,8 +149,15 @@
   (evil-cross-lines t)
   (evil-default-state "emacs")
   (evil-normal-state-modes '(text-mode prog-mode conf-mode))
+  (evil-undo-system 'undo-tree)
   (evil-want-C-u-delete t)
   (evil-want-C-u-scroll t))
+
+(use-package
+  undo-tree
+  :ensure t
+  :diminish
+  :config (global-undo-tree-mode))
 
 (use-package
   which-key
