@@ -142,11 +142,11 @@
   :config
   (evil-global-set-key 'normal (kbd "SPC") 'my-prefix)
   (evil-global-set-key 'visual (kbd "SPC") 'my-prefix)
+  (evil-global-set-key 'motion (kbd "SPC") 'my-prefix)
   (evil-global-set-key 'normal (kbd "M-.") nil)
   :custom
   (evil-cross-lines t)
-  (evil-default-state "emacs")
-  (evil-normal-state-modes '(text-mode prog-mode conf-mode))
+  (evil-emacs-state-modes '(special-mode rg-mode))
   (evil-undo-system 'undo-tree)
   (evil-want-C-u-delete t)
   (evil-want-C-u-scroll t))
@@ -230,7 +230,8 @@
 (use-package
   flycheck
   :ensure t
-  :config (global-flycheck-mode))
+  :config (global-flycheck-mode)
+  :bind-keymap ("C-c f" . flycheck-command-map))
 
 (use-package
   reformatter
