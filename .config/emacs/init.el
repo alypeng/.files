@@ -27,7 +27,6 @@
 (line-number-mode 1)
 (column-number-mode 1)
 
-(delete-selection-mode 1)
 (electric-pair-mode 1)
 (show-paren-mode 1)
 
@@ -99,13 +98,12 @@
   (ispell-program-name "aspell")
   :hook ((text-mode prog-mode conf-mode) . flyspell-mode))
 
-(defun my-colourise-compilation ()
-  (ansi-color-apply-on-region compilation-filter-start
-                              (point)))
-
 (use-package
   ansi-color
-  :hook (compilation-filter . my-colourise-compilation))
+  :hook (compilation-filter
+         . (lambda ()
+             (ansi-color-apply-on-region compilation-filter-start
+                                         (point)))))
 
 (use-package
   eldoc
@@ -177,21 +175,19 @@
   :ensure t
   :bind ("C-c SPC" . avy-goto-char-timer))
 
-(defun my-ivy-setup ()
+(use-package
+  counsel
+  :ensure t
+  :demand t
+  :diminish ivy-mode
+  :config
   (ivy-mode 1)
   (advice-add 'ivy--minibuffer-setup
               :after (lambda ()
                        (setq line-spacing 3)))
   (ivy-configure 'counsel-M-x :sort-fn #'ivy-string<)
   (ivy-configure 'counsel-describe-function :sort-fn #'ivy-string<)
-  (ivy-configure 'counsel-describe-variable :sort-fn #'ivy-string<))
-
-(use-package
-  counsel
-  :ensure t
-  :demand t
-  :diminish ivy-mode
-  :config (my-ivy-setup)
+  (ivy-configure 'counsel-describe-variable :sort-fn #'ivy-string<)
   :bind
   ("C-s" . swiper)
   ("M-x" . counsel-M-x)
@@ -231,39 +227,10 @@
   :config (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   :custom (dumb-jump-force-searcher 'rg))
 
-(defvar my-flycheck-buffer
-  '("flycheck errors"
-    (display-buffer-reuse-window display-buffer-in-side-window)
-    (window-height . 0.2)))
-
 (use-package
   flycheck
   :ensure t
-  :config
-  (global-flycheck-mode)
-  (add-to-list 'display-buffer-alist my-flycheck-buffer))
-
-(defun my-flycheck-icons (info warnings errors)
-  (list
-   (my-flycheck-icon "info" info)
-   (my-flycheck-icon "warning" warnings)
-   (my-flycheck-icon "error" errors)))
-
-(defun my-flycheck-icon (type count)
-  (cond
-   ((> count 0)
-    (let ((icon (intern-soft (concat "flycheck-indicator-icon-" type)))
-          (face (intern-soft (concat "flycheck-indicator-" type))))
-      (propertize (format " %c%s" (symbol-value icon) count)
-                  'font-lock-face face)))
-   (t "")))
-
-(use-package
-  flycheck-indicator
-  :ensure t
-  :config (advice-add 'flycheck-indicator--icons-formatter
-                      :override #'my-flycheck-icons)
-  :hook (flycheck-mode . flycheck-indicator-mode))
+  :config (global-flycheck-mode))
 
 (use-package
   reformatter
@@ -283,7 +250,6 @@
   projectile
   :ensure t
   :diminish
-  :commands projectile-project-root
   :config (projectile-mode 1)
   :custom (projectile-completion-system 'ivy)
   :bind-keymap ("C-c p" . projectile-command-map))
@@ -361,7 +327,6 @@
   markdown-mode
   :ensure t
   :mode ("README\\.md\\'" . gfm-mode)
-  :config (flycheck-add-next-checker 'markdown-mdl 'proselint)
   :hook (markdown-mode . prettier-js-mode))
 
 (use-package
@@ -475,19 +440,10 @@
   :ensure t
   :diminish
   :init (push 'company-robe company-backends)
-  :config (advice-add 'robe-find-file
-                      :filter-args #'my-robe-path-mapping)
   :bind (:map robe-mode-map
               ("M-/" . robe-doc))
   :hook
   (ruby-mode . robe-mode))
-
-(defun my-robe-path-mapping (args)
-  (if (bound-and-true-p docker-cwd)
-      (cons (concat (projectile-project-root)
-                    (file-relative-name (car args) docker-cwd))
-            (cdr args))
-    args))
 
 ;; scheme
 
@@ -593,12 +549,10 @@
   :ensure t
   :hook (yaml-mode . prettier-js-mode))
 
-;; experimental
-
 (provide 'init)
 ;;; init.el ends here
 
 ;; Local Variables:
-;; byte-compile-warnings: (not free-vars noruntime unresolved)
+;; byte-compile-warnings: (not free-vars obsolete unresolved)
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
 ;; End:
