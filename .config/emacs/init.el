@@ -32,7 +32,7 @@
 
 (set-face-attribute 'default nil
                     :family "Hack"
-                    :height (if (eq system-type 'darwin) 140 130))
+                    :height (if (eq system-type 'darwin) 150 130))
 
 (setq enable-recursive-minibuffers t)
 (setq inhibit-startup-screen t)
