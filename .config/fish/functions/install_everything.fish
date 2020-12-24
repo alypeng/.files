@@ -41,13 +41,6 @@ function install_everything
 
     nix-env --install --attr nixpkgs.my-base-env
 
-    dotfile .npmrc
-
-    npm install --global \
-        stylelint \
-        stylelint-config-recommended-scss \
-        stylelint-scss
-
     mkdir -p ~/projects
 
     dotconfig emacs
@@ -56,7 +49,6 @@ function install_everything
     dotconfig utop
 
     dotfile .aspell.conf
-    dotfile .stylelintrc.json
     dotfile .tidyrc
 
     fish_update_completions

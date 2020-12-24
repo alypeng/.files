@@ -122,7 +122,6 @@
   :ensure t
   :config
   (push "ASPELL_CONF" exec-path-from-shell-variables)
-  (push "NODE_PATH" exec-path-from-shell-variables)
   (exec-path-from-shell-initialize))
 
 (use-package

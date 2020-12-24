@@ -14,13 +14,10 @@ if status is-login
 
     fenv source "$HOME"/.nix-profile/etc/profile.d/nix.sh
 
-    set -x PATH "$HOME"/.npm/bin $PATH
     set -x PATH "$HOME"/.files/bin $PATH
 
     set -x EDITOR vi
     set -x LESSHISTFILE /dev/null
-
-    set -x NODE_PATH "$HOME"/.npm/lib/node_modules
 
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
         exec startx

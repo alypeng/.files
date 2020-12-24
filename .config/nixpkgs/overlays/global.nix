@@ -7,6 +7,7 @@ with import (super.fetchFromGitHub {
   sha256 = "1cqgpw263bz261bgz34j6hiawi4hi6smwp6981yz375fx0g6kmss";
 }) { };
 let
+  prettier = nodePackages.prettier;
   sqlformat = with python3.pkgs; toPythonApplication sqlparse;
 
   my-base-packages = [
@@ -20,9 +21,8 @@ let
     html-tidy
     mdl
     nixfmt
-    nodePackages.prettier
-    nodejs
     postgresql
+    prettier
     ripgrep
     shellcheck
     shfmt

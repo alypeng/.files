@@ -14,7 +14,5 @@ function upgrade_everything
     nix-env --delete-generations 14d
     nix-store --gc
 
-    npm upgrade --global
-
     fish_update_completions
 end
