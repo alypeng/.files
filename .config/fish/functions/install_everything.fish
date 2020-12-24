@@ -52,7 +52,6 @@ function install_everything
 
     dotconfig emacs
     dotconfig git
-    dotconfig proselint
     dotconfig pry
     dotconfig utop
 

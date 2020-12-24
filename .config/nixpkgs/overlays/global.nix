@@ -23,7 +23,6 @@ let
     nodePackages.prettier
     nodejs
     postgresql
-    proselint
     ripgrep
     shellcheck
     shfmt
