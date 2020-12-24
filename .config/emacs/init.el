@@ -58,12 +58,11 @@
   ""
   :group 'placeholder)
 
-(defun my-whitespace-hook ()
-  (add-hook 'before-save-hook 'whitespace-cleanup nil t))
-
-(add-hook 'text-mode-hook 'my-whitespace-hook)
-(add-hook 'prog-mode-hook 'my-whitespace-hook)
-(add-hook 'conf-mode-hook 'my-whitespace-hook)
+(define-minor-mode whitespace-cleanup-mode ""
+  :lighter nil
+  (if whitespace-cleanup-mode
+      (add-hook 'before-save-hook 'whitespace-cleanup nil t)
+    (remove-hook 'before-save-hook 'whitespace-cleanup t)))
 
 (define-minor-mode indent-on-save-mode ""
   :lighter nil
@@ -97,6 +96,10 @@
   (ispell-extra-args '("--run-together"))
   (ispell-program-name "aspell")
   :hook ((text-mode prog-mode conf-mode) . flyspell-mode))
+
+(use-package
+  whitespace
+  :hook ((text-mode prog-mode conf-mode) . whitespace-cleanup-mode))
 
 (use-package
   ansi-color
