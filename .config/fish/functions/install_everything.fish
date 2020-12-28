@@ -13,7 +13,7 @@ function install_everything
 
         sudo dnf -y group install base-x
 
-        sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-(rpm -E %fedora).noarch.rpm
+        sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-(rpm -E %fedora).noarch.rpm
         sudo dnf install \
             alsa-plugins-pulseaudio \
             dnf-plugin-system-upgrade \
