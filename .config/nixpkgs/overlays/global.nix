@@ -28,6 +28,7 @@ let
     shfmt
     sqlformat
     sqlint
+    vim
     yamllint
   ];
 

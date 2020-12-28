@@ -50,6 +50,7 @@ function install_everything
 
     dotfile .aspell.conf
     dotfile .tidyrc
+    dotfile .vimrc
 
     fish_update_completions
 end

@@ -16,7 +16,7 @@ if status is-login
 
     set -x PATH "$HOME"/.files/bin $PATH
 
-    set -x EDITOR vi
+    set -x EDITOR vim
     set -x LESSHISTFILE /dev/null
 
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
