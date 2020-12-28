@@ -245,16 +245,13 @@
   :custom
   (magit-diff-refine-hunk 'all)
   (magit-diff-refine-ignore-whitespace nil)
-  :bind
-  ("C-x g" . magit-status)
-  ("C-c g" . magit-file-dispatch))
+  :bind ("C-c g" . magit-file-dispatch))
 
 (use-package
   projectile
   :ensure t
   :diminish
   :config (projectile-mode 1)
-  :custom (projectile-completion-system 'ivy)
   :bind-keymap ("C-c p" . projectile-command-map))
 
 (use-package
