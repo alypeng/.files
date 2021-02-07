@@ -394,11 +394,6 @@
   (defun tuareg--skip-double-colon () nil)
   :hook (tuareg-mode . utop-minor-mode))
 
-(use-package
-  dune
-  :ensure t
-  :hook (dune-mode . indent-on-save-mode))
-
 ;; python
 
 (use-package
@@ -439,7 +434,7 @@
   robe
   :ensure t
   :diminish
-  :init (push 'company-robe company-backends)
+  :config (defun robe-complete-at-point () nil)
   :bind (:map robe-mode-map
               ("M-/" . robe-doc))
   :hook
@@ -459,22 +454,6 @@
 (use-package
   sh-script
   :hook (sh-mode . shell-format-on-save-mode))
-
-(defvar my-shell-backend
-  '(:separate company-fish-shell
-              company-shell
-              company-shell-env
-              :with
-              company-files
-              company-dabbrev-code))
-
-(use-package
-  company-shell
-  :ensure t
-  :after (:any sh-script
-               fish-mode)
-  :config (push my-shell-backend company-backends)
-  :custom (company-shell-clean-manpage t))
 
 ;; sql
 
@@ -510,17 +489,6 @@
   (web-mode . indent-on-save-mode)
   (web-mode . (lambda ()
                 (my-auto-enable-minor-mode 'robe-mode "erb"))))
-
-(defvar my-web-backend
-  '(:separate company-web-html
-              :with
-              company-dabbrev-code))
-
-(use-package
-  company-web
-  :ensure t
-  :after web-mode
-  :config (push my-web-backend company-backends))
 
 (use-package
   css-mode

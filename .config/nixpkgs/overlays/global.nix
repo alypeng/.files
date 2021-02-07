@@ -19,7 +19,6 @@ let
     hack-font
     hadolint
     html-tidy
-    mdl
     nixfmt
     postgresql
     prettier
@@ -29,7 +28,6 @@ let
     sqlformat
     sqlint
     vim
-    yamllint
   ];
 
   my-ocaml-packages = [
