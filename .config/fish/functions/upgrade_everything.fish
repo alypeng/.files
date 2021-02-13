@@ -9,10 +9,5 @@ function upgrade_everything
         sudo dnf --refresh autoremove
     end
 
-    nix-env --install --attr nixpkgs.my-base-env
-
-    nix-env --delete-generations 14d
-    nix-store --gc
-
     fish_update_completions
 end
