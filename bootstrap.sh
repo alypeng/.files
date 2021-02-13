@@ -17,6 +17,7 @@ else
 
     sudo dnf install \
         fish \
+        git \
         tar \
         util-linux-user
 fi

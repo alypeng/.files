@@ -24,7 +24,8 @@ function install_everything
             i3 \
             redshift \
             rxvt-unicode \
-            strace
+            strace \
+            zip
 
         sudo chown -R $USER:$USER ~/.cache
 
@@ -44,7 +45,9 @@ function install_everything
     mkdir -p ~/projects
 
     dotconfig emacs
+    dotconfig fish
     dotconfig git
+    dotconfig nixpkgs
     dotconfig pry
     dotconfig utop
 
