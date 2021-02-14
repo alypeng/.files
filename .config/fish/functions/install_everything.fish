@@ -50,7 +50,6 @@ function install_everything
     dotconfig pry
     dotconfig utop
 
-    dotfile .aspell.conf
     dotfile .tidyrc
     dotfile .vimrc
 

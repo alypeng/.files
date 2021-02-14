@@ -93,7 +93,9 @@
   flyspell
   :diminish
   :custom
-  (ispell-extra-args '("--run-together"))
+  (ispell-extra-args '("--run-together"
+                       "--run-together-limit=10"
+                       "--sug-mode=ultra"))
   (ispell-program-name "aspell")
   :hook ((text-mode prog-mode conf-mode) . flyspell-mode))
 
