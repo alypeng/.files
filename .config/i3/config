@@ -93,6 +93,7 @@ mode "resize" {
 bindsym $mod+R mode "resize"
 
 bindsym $mod+Shift+S exec systemctl suspend
+bindsym $mod+Shift+D exec systemctl hibernate
 bindsym $mod+Shift+U exec shutdown now
 
 bar {
