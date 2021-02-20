@@ -19,6 +19,8 @@ if status is-login
     set -x EDITOR vim
     set -x LESSHISTFILE /dev/null
 
+    set -x LEIN_HOME "$HOME"/.config/lein
+
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
         exec startx
     end

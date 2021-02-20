@@ -33,6 +33,8 @@ let
     vim
   ];
 
+  my-clojure-packages = [ clj-kondo leiningen ];
+
   my-ocaml-packages = [
     ocaml
     ocamlPackages.core
@@ -58,7 +60,7 @@ let
 in {
   my-base-env = super.buildEnv {
     name = "my-base-env";
-    paths = my-base-packages ++ my-python-packages;
+    paths = my-base-packages ++ my-clojure-packages ++ my-python-packages;
     pathsToLink = [ "/bin" "/lib" "/share" ];
   };
 

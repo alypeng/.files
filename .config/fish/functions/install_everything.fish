@@ -46,6 +46,7 @@ function install_everything
     dotconfig emacs
     dotconfig fish
     dotconfig git
+    dotconfig lein
     dotconfig nixpkgs
     dotconfig pry
     dotconfig utop
