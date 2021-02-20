@@ -14,6 +14,8 @@ let
     aspell
     aspellDicts.en
     direnv
+    entr
+    fd
     fish-foreign-env
     git
     hack-font
@@ -27,6 +29,7 @@ let
     shfmt
     sqlformat
     sqlint
+    tree
     vim
   ];
 
