@@ -27,6 +27,11 @@ function install_everything
             strace \
             zip
 
+        sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-(rpm -E %fedora).noarch.rpm
+        sudo dnf install \
+            akmod-nvidia \
+            steam
+
         sudo chown -R $USER:$USER ~/.cache
 
         dotconfig gtk-3.0
