@@ -272,6 +272,29 @@
   :ensure t
   :bind ("C-c d" . docker))
 
+;; clojure
+
+(use-package
+  clojure-mode
+  :ensure t
+  :bind (:map clojure-mode-map
+              ("C-c C-a" . clojure-align)
+              ("C-c SPC" . nil)))
+
+(use-package
+  cider
+  :ensure t
+  :diminish
+  :bind (:map cider-mode-map
+              ("M-/" . cider-doc))
+  :hook
+  (clojure-mode . (lambda ()
+                    (add-hook 'before-save-hook 'cider-format-buffer nil t))))
+
+(use-package
+  flycheck-clj-kondo
+  :ensure t)
+
 ;; docker
 
 (use-package
