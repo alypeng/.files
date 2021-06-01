@@ -3,7 +3,7 @@
 if [ "$*" == "exec rails console -e development" ]; then
     docker-compose run --rm -p 7063:7063 \
         -v "$(find ~/.config/emacs/elpa/robe-* -name lib -type d | tail -n 1)":/robe \
-        web bash -c "bundle $*"
+        "$RUBY_CONTAINER" bash -c "bundle $*"
 else
-    docker-compose run --rm web bash -c "bundle $*"
+    docker-compose run --rm "$RUBY_CONTAINER" bash -c "bundle $*"
 fi

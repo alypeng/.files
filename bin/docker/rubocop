@@ -19,4 +19,4 @@ root=$(find_up Gemfile)
 args=${*//$root//app}
 
 docker-compose run --rm --no-deps \
-    web bash -c "bundle exec rubocop $args" | sed "s|^/app|$root|"
+    "$RUBY_CONTAINER" bash -c "bundle exec rubocop $args" | sed "s|^/app|$root|"
